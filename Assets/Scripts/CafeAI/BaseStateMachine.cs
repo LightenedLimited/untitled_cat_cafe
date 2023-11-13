@@ -22,11 +22,10 @@ namespace CafeAI
 
         public BaseState CurrentState { get; set; }
 
-        private void Update()
-        {
+        private void Update() {
             CurrentState.Execute(this);
         }
-        
+
         // Overrides default GetComponent to cache
         // Notes for Derek - new: overrides base GetComponent
         // Where T: Component: restricts which classes can be passed.
