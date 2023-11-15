@@ -415,8 +415,9 @@ GameObject:
   - component: {fileID: 696098236}
   - component: {fileID: 696098235}
   - component: {fileID: 696098233}
-  - component: {fileID: 696098240}
+  - component: {fileID: 696098242}
   - component: {fileID: 696098241}
+  - component: {fileID: 696098240}
   m_Layer: 0
   m_Name: ItemInteractNPC
   m_TagString: Untagged
@@ -568,11 +569,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 696098231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7d94acc63fc1e54baee1174b7c16e6a, type: 3}
+  m_Script: {fileID: 11500000, guid: b2c6eb976476c36438284d2fb1d086f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialState: {fileID: 11400000, guid: b97406292c5a3fb4b9ee339c5803b650, type: 2}
+  activeState: {fileID: 0}
 --- !u!114 &696098241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696098231}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f344224251d4aa4dac102d987c1f664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FinishedTransitition: {fileID: 696098242}
+  InteractionReach: 1.5
+--- !u!114 &696098242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b8199ffc296b47b72fd69ba03e2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AtCoffeeTransition: {fileID: 0}
+  AtCoffeeTransition: {fileID: 696098241}
 --- !u!1 &721640484
 GameObject:
   m_ObjectHideFlags: 0
