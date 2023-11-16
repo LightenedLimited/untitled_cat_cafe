@@ -10,9 +10,9 @@ namespace CatCafeAI
         [SerializeField] State SuccessTransition;
         [SerializeField] State CloseTransition;
         [SerializeField] State FailTransition;
-        [SerializeField] float PathInterval;
-        [SerializeField] float ChaseTime;
-        [SerializeField] float CloseThreshold;
+        [SerializeField] float PathInterval = 0.5f;
+        [SerializeField] float ChaseTime = 20f;
+        [SerializeField] float CloseThreshold = 3f;
 
         private GameObject player;
         private float pathTime;
@@ -26,14 +26,7 @@ namespace CatCafeAI
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
 
-            try
-            {
-                player = GameObject.FindGameObjectsWithTag("Player")[0];
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError("No Player - Tag an object with 'Player'");
-            }
+            player = GameObject.FindGameObjectsWithTag("Player")[0];
         }
 
         // Update is called once per frame
@@ -57,6 +50,19 @@ namespace CatCafeAI
                 manager.Transition(this, FailTransition);
             }
             // On collision enter with player, something?
+        }
+
+        void OnCollisionEnter(Collision collision)            
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Caught Player");
+                MeshRenderer r;
+                if(TryGetComponent(out r))
+                    r.material.SetColor("_Color", Color.green);
+
+                manager.Transition(this, SuccessTransition);
+            }
         }
     }
 }

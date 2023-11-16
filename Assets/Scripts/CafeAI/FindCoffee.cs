@@ -41,6 +41,7 @@ namespace CatCafeAI
                 {
                     Debug.Log("No Usable Coffees Left :(");
                     Debug.Log("(TODO) Transition to some other state?");
+                    manager.Transition(this, null);
                 }
             }
             else

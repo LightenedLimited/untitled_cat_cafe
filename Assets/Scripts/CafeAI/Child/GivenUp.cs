@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class GivenUp : State
+namespace CatCafeAI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GivenUp : State
     {
-        
-    }
+        private Rigidbody body;
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            if (!TryGetComponent<Rigidbody>(out body))
+                Debug.LogError("No Rigidbody");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void OnEnable()
+        {
+            NavMeshAgent agent;
+            if (TryGetComponent(out agent))
+                agent.enabled = false;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            body.AddTorque(transform.up);
+            body.AddTorque(transform.right);
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CafeAI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,9 +25,12 @@ namespace CatCafeAI
         public State StartingState;
         protected virtual void Start()
         {
-            var states = FindObjectsOfType<State>();
+            var states = gameObject.GetComponents<State>();
             foreach (State s in states)
-                s.enabled = s == StartingState;
+            {
+                Debug.Log(s == StartingState);
+                s.enabled = (s == StartingState);
+            }
             ActiveState = StartingState;
         }
         public State ActiveState;
