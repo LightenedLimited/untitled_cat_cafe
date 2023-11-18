@@ -38,7 +38,8 @@ namespace CatCafeAI
         public void Transition(State from, State to)
         {
             from.enabled = false;
-            to.enabled = true;
+            if (to is not null)
+                to.enabled = true;
             ActiveState = to;
         }
     }
