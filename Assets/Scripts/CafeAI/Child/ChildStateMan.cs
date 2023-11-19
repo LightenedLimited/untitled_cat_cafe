@@ -17,9 +17,9 @@ namespace CatCafeAI
             set => patience = value;
         }
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
         }

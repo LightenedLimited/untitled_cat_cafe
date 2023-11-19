@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 namespace CatCafeAI
 {
     public class CustomerStateMan : StateMan, ISeesCoffee
     {
         private NavMeshAgent agent;
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
         }

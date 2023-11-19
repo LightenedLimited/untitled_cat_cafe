@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using CafeAI;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,9 +19,9 @@ namespace CatCafeAI
         private float LeapCD;
         bool hasLeapt;
         private Rigidbody body;
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
 

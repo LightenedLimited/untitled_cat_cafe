@@ -14,9 +14,9 @@ namespace CatCafeAI
         private ISeesCoffee coffeeMan;
         private NavMeshAgent agent;
         // Start is called before the first frame update
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             // require statemanager to see coffee
             if (manager is not ISeesCoffee)
                 Debug.LogError("Statemanager needs to see coffee");

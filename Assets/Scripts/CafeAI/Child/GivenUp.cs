@@ -9,8 +9,9 @@ namespace CatCafeAI
     {
         private Rigidbody body;
         // Start is called before the first frame update
-        protected override void Start()
+        protected override void Awake()
         {
+            base.Awake();
             if (!TryGetComponent<Rigidbody>(out body))
                 Debug.LogError("No Rigidbody");
         }

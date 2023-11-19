@@ -18,9 +18,9 @@ namespace CatCafeAI
         private float pathTime;
         private float chaseTimeLeft;
         private NavMeshAgent agent;
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             pathTime = PathInterval;
             chaseTimeLeft = ChaseTime;
             if (!TryGetComponent<NavMeshAgent>(out agent))

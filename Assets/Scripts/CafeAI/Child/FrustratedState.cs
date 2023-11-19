@@ -15,9 +15,9 @@ namespace CatCafeAI
         private IPatience patienceMan;
         private float FrustrationTime;
         private Rigidbody body;
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
             if (!TryGetComponent<Rigidbody>(out body))

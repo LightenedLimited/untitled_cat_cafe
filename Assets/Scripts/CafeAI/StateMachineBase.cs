@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CafeAI;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +10,7 @@ namespace CatCafeAI
     public abstract class State : MonoBehaviour
     {
         protected StateMan manager;
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             if (!gameObject.TryGetComponent(out manager))
                 Debug.Log("GameObject doesn't have a State Manager");
@@ -23,7 +22,7 @@ namespace CatCafeAI
     {
         [SerializeField]
         public State StartingState;
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             var states = gameObject.GetComponents<State>();
             foreach (State s in states)
