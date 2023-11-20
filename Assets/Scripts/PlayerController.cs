@@ -92,14 +92,20 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "PickupObject" && !hasObject) //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             canpickup = true;  //set the pick up bool to true
+            if(pickupObject != null)
+            {
+                pickupObject.GetComponent<InteractableController>().unHighlightInteractable();
+            }
             pickupObject = other.gameObject; //set the gameobject you collided with to one you can reference
+            pickupObject.GetComponent<InteractableController>().highlightInteractable(); 
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.tag == "PickupObject")
         {
-            canpickup = false; 
+            canpickup = false;
+            pickupObject.GetComponent<InteractableController>().unHighlightInteractable();
         }
     }
     void OnPickup()
