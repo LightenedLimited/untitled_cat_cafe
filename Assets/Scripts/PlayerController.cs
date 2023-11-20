@@ -89,8 +89,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
-        Debug.Log(other.gameObject.tag); 
-        if (other.gameObject.tag == "PickupObject") //on the object you want to pick up set the tag to be anything, in this case "object"
+        if (other.gameObject.tag == "PickupObject" && !hasObject) //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             canpickup = true;  //set the pick up bool to true
             pickupObject = other.gameObject; //set the gameobject you collided with to one you can reference
@@ -98,16 +97,16 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Mug")
+        if(other.gameObject.tag == "PickupObject")
         {
             canpickup = false; 
         }
     }
     void OnPickup()
     {
-        if (!canpickup) return;
+        //if (!canpickup) return;
         Debug.Log("INSIDE PICKUP"); 
-        if(!hasObject)
+        if(!hasObject && canpickup)
         {
             hasObject = true;
             pickupObject.GetComponent<Rigidbody>().isKinematic = true;
