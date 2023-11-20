@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private bool canpickup;
     private bool hasObject; 
-    private GameObject pickupObject; 
+    private GameObject pickupObject;
+    private GameObject MouthLocation; 
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,9 @@ public class PlayerController : MonoBehaviour
 
         anim = GetComponent<Animator>();
         canpickup = false;
-        hasObject = false; 
+        hasObject = false;
+
+        MouthLocation = transform.GetChild(0).gameObject; 
     }
 
     // Update is called once per frame
@@ -103,19 +106,21 @@ public class PlayerController : MonoBehaviour
     void OnPickup()
     {
         if (!canpickup) return;
-        FixedJoint joint = pickupObject.GetComponent <FixedJoint>();
         Debug.Log("INSIDE PICKUP"); 
         if(!hasObject)
         {
             hasObject = true;
-            joint.connectedBody = rb;
-            Debug.Log("connected joint"); 
-            return; 
+            pickupObject.GetComponent<Rigidbody>().isKinematic = true;
+            pickupObject.transform.position = MouthLocation.transform.position; // sets the position of the object to your hand position
+            pickupObject.transform.parent = MouthLocation.transform; //makes the object become a child of the parent so that it moves with the hands
+        
+        return; 
         }
         if(hasObject)
         {
             hasObject = false;
-            joint.connectedBody = null;
+            pickupObject.GetComponent<Rigidbody>().isKinematic = false;
+            pickupObject.transform.parent = null; 
             return; 
         }
 
