@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(moveX, 0, moveY).normalized * velocity;
+        Vector3 move = Quaternion.Euler(0, -90, 0) * new Vector3(moveX, 0, moveY).normalized * velocity;
         rb.velocity = move; 
 
         if (moveX != 0 || moveY != 0)
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         }
         Quaternion current = transform.rotation;
         int desired_angle = 0;
+        int initialAngleDisplacement = -90; 
         if (moveX > 0 && moveY > 0) {
             desired_angle = 45;
          }
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (moveX < 0 && moveY < 0) desired_angle = -135;
         if (moveX == 0 && moveY < 0) desired_angle = 180;
         if (moveX > 0 && moveY < 0) desired_angle = 135;
-
+        desired_angle += initialAngleDisplacement; 
         Quaternion desired_rotation = Quaternion.Euler(0, desired_angle, 0);
         desired_angle *= -1; 
         if (moveX == 0 && moveY == 0)
