@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionUnit : MonoBehaviour
+public class GamerStateMan : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,14 +13,6 @@ public class InteractionUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Idle
-
-        // Look for an interactable
-
-        // Move to interactable
-
-        // Interact
-        Object.FindObjectsOfType<Interactable>();
         
     }
 }

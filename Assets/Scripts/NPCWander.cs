@@ -8,10 +8,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 // A very simple script to let a NPC wander
-// TODO: FSM for more advanced behaviors
-// TODO: Let a NPC interact with other objects (how?)
-// Desired behaviors: Chase the player, sit on a chair and get a drink, 
-// Need to look at animations?
+// Deprecated
 public class NPCwander : MonoBehaviour
 {
     // Start is called before the first frame update

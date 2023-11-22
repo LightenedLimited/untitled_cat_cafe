@@ -44,5 +44,10 @@ namespace CatCafeAI
             get;
             set;
         }
+        int MaxPatience
+        {
+            get;
+            set;
+        }
     }
 }

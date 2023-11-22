@@ -266,9 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!114 &191585516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +314,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 279123336}
   - component: {fileID: 279123335}
   - component: {fileID: 279123334}
   - component: {fileID: 279123333}
@@ -329,6 +325,7 @@ GameObject:
   - component: {fileID: 279123327}
   - component: {fileID: 279123326}
   - component: {fileID: 279123325}
+  - component: {fileID: 279123337}
   m_Layer: 0
   m_Name: Child
   m_TagString: Untagged
@@ -376,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FinishedTransition: {fileID: 279123326}
-  SuccessTransition: {fileID: 279123325}
+  SuccessTransition: {fileID: 279123337}
   LeapDelay: 0.6
   LeapForce: 9
 --- !u!114 &279123328
@@ -391,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6226957809b30a48b057de1c6a538f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SuccessTransition: {fileID: 279123325}
+  SuccessTransition: {fileID: 279123337}
   CloseTransition: {fileID: 279123327}
   FailTransition: {fileID: 279123326}
   PathInterval: 0.5
@@ -409,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd6e9fd59713c746939730a886db3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingState: {fileID: 279123328}
+  StartingState: {fileID: 279123337}
   ActiveState: {fileID: 0}
   patience: 3
 --- !u!195 &279123330
@@ -547,7 +544,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &279123336
+--- !u!114 &279123337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -556,12 +553,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 279123324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd6e9fd59713c746939730a886db3d9, type: 3}
+  m_Script: {fileID: 11500000, guid: ad30b4a43bee7194bb6e5fb69e9dc319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingState: {fileID: 279123328}
-  ActiveState: {fileID: 0}
-  patience: 3
+  ExitProbability: 0.25
+  ExitTransition: {fileID: 279123328}
+  DistanceLimit: 10
+  WaitTime: 4
 --- !u!1 &362773302
 GameObject:
   m_ObjectHideFlags: 0

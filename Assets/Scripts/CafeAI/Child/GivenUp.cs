@@ -9,25 +9,25 @@ namespace CatCafeAI
     {
         private Rigidbody body;
         // Start is called before the first frame update
+        private NavMeshAgent agent;
         protected override void Awake()
         {
             base.Awake();
             if (!TryGetComponent<Rigidbody>(out body))
                 Debug.LogError("No Rigidbody");
+            if (!TryGetComponent<NavMeshAgent>(out agent))
+                Debug.LogError("No Agent");
         }
 
         void OnEnable()
         {
-            NavMeshAgent agent;
-            if (TryGetComponent(out agent))
-                agent.enabled = false;
+            agent.enabled = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            body.AddTorque(transform.up);
-            body.AddTorque(transform.right);
+            body.AddTorque(transform.up, ForceMode.VelocityChange);
         }
     }
 }

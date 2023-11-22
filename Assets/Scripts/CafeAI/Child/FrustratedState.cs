@@ -13,7 +13,7 @@ namespace CatCafeAI
         [SerializeField] float FrustrationLength = 5f; 
         private UnityEngine.AI.NavMeshAgent agent;
         private IPatience patienceMan;
-        private float FrustrationTime;
+        private float frustrationTime;
         private Rigidbody body;
         protected override void Awake()
         {
@@ -32,15 +32,15 @@ namespace CatCafeAI
         {
             agent.enabled = false;
             body.isKinematic = false;
-            FrustrationTime = FrustrationLength;
+            frustrationTime = FrustrationLength;
             patienceMan.Patience--;
         }
         // Update is called once per frame
         void Update()
         {
             body.AddTorque(transform.up, ForceMode.VelocityChange);
-            FrustrationTime -= Time.deltaTime;
-            if (FrustrationTime <= 0)
+            frustrationTime -= Time.deltaTime;
+            if (frustrationTime <= 0)
             {
                 if (patienceMan.Patience <= 0)
                     manager.Transition(this, OutOfPatienceState);

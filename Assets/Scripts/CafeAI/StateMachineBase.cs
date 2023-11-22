@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using CafeAI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +26,7 @@ namespace CatCafeAI
             var states = gameObject.GetComponents<State>();
             foreach (State s in states)
             {
-                Debug.Log(s == StartingState);
+                // Debug.Log(s == StartingState);
                 s.enabled = (s == StartingState);
             }
             ActiveState = StartingState;

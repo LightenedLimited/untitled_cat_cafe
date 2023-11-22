@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("TOOD: start the game");
+        Debug.Log("TODO: start the game");
         // SceneManager.LoadScene("NPC-test");
     }
 }
