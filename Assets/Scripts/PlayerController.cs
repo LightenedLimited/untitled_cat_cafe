@@ -10,19 +10,30 @@ public class PlayerController : MonoBehaviour
     private float moveX, moveY;
     private Vector3 jumpDirection; 
     public float velocity = 5f;
-    public float jumpMagnitude = 0.0f;
+    public float jumpXZMagnitude = 4f;
     public float rotation_speed = 2f;
     float timeCount = 0.0f;
-    public float initialAngle = -90f; 
+    public float initialAngle = -90f;
+    public float jumpThreshold = 10f;
+    public float catHeight = 2f;
+    public float jumpAnimationTime = 1.5f; 
 
     public Animator anim;
 
     private bool canpickup;
-    private bool hasObject; 
+    private bool duringJump; 
+    private bool hasObject;
+
+    private bool inJumpRange; 
+
     private GameObject pickupObject;
     private GameObject MouthLocation;
-    private GameObject MouthReference;
-    private Vector3 mouthDisplacement; 
+    private Vector3 mouthDisplacement;
+
+    private GameObject jumpObject;
+
+    private Vector3 desiredJumpLocation; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,20 +46,27 @@ public class PlayerController : MonoBehaviour
         canpickup = false;
         hasObject = false;
 
-        //MouthLocation = transform.GetChild(0).gameObject;
+        inJumpRange = false;
+        duringJump = false; 
+
         MouthLocation = this.transform.Find("Armature.001/Bone/Bone.001/Bone.002/Bone.003/Bone.004/Bone.005/Bone.038/MouthLocation").gameObject;
-        //mouthDisplacement = MouthLocation.transform.position - MouthReference.transform.position; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //mouthDisplacement
+        if(duringJump)
+        {
+
+        }
     }
 
     private void FixedUpdate()
     {
+        if (duringJump) return; 
+
         Vector3 move = Quaternion.Euler(0, initialAngle, 0) * new Vector3(moveX, 0, moveY).normalized * velocity;
+        move += new Vector3(0, rb.velocity.y, 0); 
         rb.velocity = move; 
 
         if (moveX != 0 || moveY != 0)
@@ -111,6 +129,12 @@ public class PlayerController : MonoBehaviour
             pickupObject = other.gameObject; //set the gameobject you collided with to one you can reference
             pickupObject.GetComponent<InteractableController>().highlightInteractable(); 
         }
+        if(other.gameObject.tag == "JumpEntry")
+        {
+
+            inJumpRange = true; 
+            jumpObject = other.gameObject; 
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -119,11 +143,14 @@ public class PlayerController : MonoBehaviour
             canpickup = false;
             pickupObject.GetComponent<InteractableController>().unHighlightInteractable();
         }
+        if(other.gameObject.tag == "JumpEntry")
+        {
+            inJumpRange = false;
+        }
     }
     void OnPickup()
     {
         //if (!canpickup) return;
-        Debug.Log("INSIDE PICKUP"); 
         if(!hasObject && canpickup)
         {
             anim.SetTrigger("pickup"); 
@@ -145,7 +172,30 @@ public class PlayerController : MonoBehaviour
 
     void OnJump() 
     {
-        //rb.AddForce(jumpDirection * jumpMagnitude, ForceMode.Impulse);
-        anim.SetTrigger("jump"); 
+        float gravity = Physics.gravity.y; 
+        if (!inJumpRange || duringJump) return;
+        float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized); 
+        if (angle > jumpThreshold) return;
+        //disable movement during jump? 
+        //anim.SetTrigger("jump");
+        Debug.Log("inside"); 
+        Vector3 xz_velocity = this.transform.forward.normalized * jumpXZMagnitude / jumpAnimationTime;
+        float height = jumpObject.transform.position.y - this.transform.position.y;
+        Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
+        Debug.Log(xz_velocity + y_velocity); 
+        rb.velocity = xz_velocity + y_velocity; 
+        duringJump = true;
+        Invoke("jumpEnd", jumpAnimationTime); 
+    }
+
+    public void jumpEnd()
+    {
+        //float new_x = this.transform.position.x; 
+        //float new_y = jumpObject.transform.position.y - catHeight;
+        //float new_z = this.transform.position.z;
+        //desiredJumpLocation = new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude; 
+        //Debug.Log(new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude); 
+        //this.transform.position = new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude;
+        duringJump = false; 
     }
 }
