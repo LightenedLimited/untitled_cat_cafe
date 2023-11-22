@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private float moveX, moveY;
     private Vector3 jumpDirection; 
     public float velocity = 5f;
-    public float jumpXZMagnitude = 4f;
+    public float jumpXZMultiplier = 1.2f;
     public float rotation_speed = 2f;
     float timeCount = 0.0f;
     public float initialAngle = -90f;
@@ -172,30 +172,26 @@ public class PlayerController : MonoBehaviour
 
     void OnJump() 
     {
-        float gravity = Physics.gravity.y; 
         if (!inJumpRange || duringJump) return;
         float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized); 
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
-        Debug.Log("inside"); 
-        Vector3 xz_velocity = this.transform.forward.normalized * jumpXZMagnitude / jumpAnimationTime;
-        float height = jumpObject.transform.position.y - this.transform.position.y;
+    }
+
+    public void ApplyJumpVelocity()
+    {
+        float gravity = Physics.gravity.y;
+        Vector3 displacement = jumpObject.transform.position - this.transform.position;
+        Vector3 xz_velocity = new Vector3(displacement.x / jumpAnimationTime * 0.8f, 0, displacement.z / jumpAnimationTime * 0.8f); 
+        float height = jumpObject.transform.position.y - this.transform.position.y + catHeight;
         Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
-        Debug.Log(xz_velocity + y_velocity); 
-        rb.velocity = xz_velocity + y_velocity; 
+        rb.velocity = xz_velocity + y_velocity;
         duringJump = true;
-        Invoke("jumpEnd", jumpAnimationTime); 
     }
 
     public void jumpEnd()
     {
-        //float new_x = this.transform.position.x; 
-        //float new_y = jumpObject.transform.position.y - catHeight;
-        //float new_z = this.transform.position.z;
-        //desiredJumpLocation = new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude; 
-        //Debug.Log(new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude); 
-        //this.transform.position = new Vector3(new_x, new_y, new_z) + this.transform.forward.normalized * jumpXZMagnitude;
         duringJump = false; 
     }
 }
