@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private bool canpickup;
     private bool hasObject; 
     private GameObject pickupObject;
-    private GameObject MouthLocation; 
+    private GameObject MouthLocation;
+    private GameObject MouthReference;
+    private Vector3 mouthDisplacement; 
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +34,15 @@ public class PlayerController : MonoBehaviour
         canpickup = false;
         hasObject = false;
 
-        MouthLocation = transform.GetChild(0).gameObject; 
+        //MouthLocation = transform.GetChild(0).gameObject;
+        MouthLocation = this.transform.Find("Armature.001/Bone/Bone.001/Bone.002/Bone.003/Bone.004/Bone.005/Bone.038/MouthLocation").gameObject;
+        //mouthDisplacement = MouthLocation.transform.position - MouthReference.transform.position; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //mouthDisplacement
     }
 
     private void FixedUpdate()
@@ -87,6 +91,13 @@ public class PlayerController : MonoBehaviour
         
 
     }
+    private void AttachPickupObject()
+    {
+        pickupObject.GetComponent<Rigidbody>().isKinematic = true;
+        pickupObject.GetComponent<BoxCollider>().enabled = false;
+        pickupObject.transform.position = MouthLocation.transform.position; // sets the position of the object to your hand position
+        pickupObject.transform.parent = MouthLocation.transform; //makes the object become a child of the parent so that it moves with the hands
+    }
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
         if (other.gameObject.tag == "PickupObject" && !hasObject) //on the object you want to pick up set the tag to be anything, in this case "object"
@@ -114,11 +125,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("INSIDE PICKUP"); 
         if(!hasObject && canpickup)
         {
+            anim.SetTrigger("pickup"); 
             hasObject = true;
-            pickupObject.GetComponent<Rigidbody>().isKinematic = true;
-            pickupObject.GetComponent<BoxCollider>().enabled = false; 
-            pickupObject.transform.position = MouthLocation.transform.position; // sets the position of the object to your hand position
-            pickupObject.transform.parent = MouthLocation.transform; //makes the object become a child of the parent so that it moves with the hands
+            Invoke("AttachPickupObject", 0.8f); 
         
         return; 
         }
