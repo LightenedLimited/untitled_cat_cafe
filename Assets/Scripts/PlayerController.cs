@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
         float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized); 
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
-        //anim.SetTrigger("jump");
+        anim.SetTrigger("jump");
         Debug.Log("inside"); 
         Vector3 xz_velocity = this.transform.forward.normalized * jumpXZMagnitude / jumpAnimationTime;
         float height = jumpObject.transform.position.y - this.transform.position.y;
