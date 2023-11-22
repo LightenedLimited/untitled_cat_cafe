@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float jumpMagnitude = 0.0f;
     public float rotation_speed = 2f;
     float timeCount = 0.0f;
+    public float initialAngle = -90f; 
 
     public Animator anim;
 
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 move = Quaternion.Euler(0, -90, 0) * new Vector3(moveX, 0, moveY).normalized * velocity;
+        Vector3 move = Quaternion.Euler(0, initialAngle, 0) * new Vector3(moveX, 0, moveY).normalized * velocity;
         rb.velocity = move; 
 
         if (moveX != 0 || moveY != 0)
@@ -59,8 +60,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("walk", false);
         }
         Quaternion current = transform.rotation;
-        int desired_angle = 0;
-        int initialAngleDisplacement = -90; 
+        int desired_angle = 0; 
         if (moveX > 0 && moveY > 0) {
             desired_angle = 45;
          }
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (moveX < 0 && moveY < 0) desired_angle = -135;
         if (moveX == 0 && moveY < 0) desired_angle = 180;
         if (moveX > 0 && moveY < 0) desired_angle = 135;
-        desired_angle += initialAngleDisplacement; 
+        desired_angle += (int)initialAngle; 
         Quaternion desired_rotation = Quaternion.Euler(0, desired_angle, 0);
         desired_angle *= -1; 
         if (moveX == 0 && moveY == 0)
@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump() 
     {
-        rb.AddForce(jumpDirection * jumpMagnitude, ForceMode.Impulse);
+        //rb.AddForce(jumpDirection * jumpMagnitude, ForceMode.Impulse);
+        anim.SetTrigger("jump"); 
     }
 }
