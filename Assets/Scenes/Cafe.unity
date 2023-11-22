@@ -2217,7 +2217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 2
   jumpMagnitude: 0
-  rotation_speed: 2
+  rotation_speed: 5
+  initialAngle: -90
   anim: {fileID: 1111506111}
 --- !u!95 &1111506111
 Animator:
