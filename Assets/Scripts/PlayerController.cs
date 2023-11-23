@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.tag == "JumpEntry")
         {
-
             inJumpRange = true; 
             jumpObject = other.gameObject; 
         }
@@ -173,7 +172,7 @@ public class PlayerController : MonoBehaviour
     void OnJump() 
     {
         if (!inJumpRange || duringJump) return;
-        float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized); 
+        float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized);
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
@@ -186,6 +185,7 @@ public class PlayerController : MonoBehaviour
         Vector3 xz_velocity = new Vector3(displacement.x / jumpAnimationTime * 0.8f, 0, displacement.z / jumpAnimationTime * 0.8f); 
         float height = jumpObject.transform.position.y - this.transform.position.y + catHeight;
         Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
+        Debug.Log(height); 
         rb.velocity = xz_velocity + y_velocity;
         duringJump = true;
     }
