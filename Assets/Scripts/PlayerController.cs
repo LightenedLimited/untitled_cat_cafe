@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject jumpObject;
 
-    private Vector3 desiredJumpLocation; 
+    private Vector3 desiredJumpLocation;
+
 
     // Start is called before the first frame update
     void Start()
@@ -215,5 +216,11 @@ public class PlayerController : MonoBehaviour
             collider.enabled = false;
             return; 
         }
+    }
+    public void OnPause()
+    {
+        Debug.Log("INSIDE PAUSE CONTROL"); 
+        if (GameManager.Instance.state == GameState.GamePaused) GameManager.Instance.UpdateGameState(GameState.GameRunning);
+        else GameManager.Instance.UpdateGameState(GameState.GamePaused);
     }
 }
