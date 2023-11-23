@@ -12,6 +12,10 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.OnGameStateChange += GameManagerOnGameStateChange; 
     }
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChange -= GameManagerOnGameStateChange;
+    }
 
     // Update is called once per frame
     void Update()

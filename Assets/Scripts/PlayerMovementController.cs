@@ -56,10 +56,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(duringJump)
-        {
-
-        }
     }
 
     private void FixedUpdate()
@@ -217,10 +213,5 @@ public class PlayerController : MonoBehaviour
             return; 
         }
     }
-    public void OnPause()
-    {
-        Debug.Log("INSIDE PAUSE CONTROL"); 
-        if (GameManager.Instance.state == GameState.GamePaused) GameManager.Instance.UpdateGameState(GameState.GameRunning);
-        else GameManager.Instance.UpdateGameState(GameState.GamePaused);
-    }
+    
 }
