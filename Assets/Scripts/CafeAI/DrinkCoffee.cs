@@ -9,11 +9,12 @@ namespace CatCafeAI
 {
     public class DrinkCoffee : State
     {
-        [SerializeField]
-        public State FinishedTransitition;
-        [SerializeField]
-        public float InteractionReach = 1.5f;
+        [SerializeField] public State FinishedTransitition;
+        [SerializeField] public float InteractionReach = 1.5f;
+        [SerializeField] public float DrinkAmount = 0.1f;
+        [SerializeField] public float Duration = 1f;
 
+        private float drinkTime = 0;
         private ISeesCoffee coffeeMan;
         private NavMeshAgent agent;
         // Start is called before the first frame update
@@ -28,13 +29,21 @@ namespace CatCafeAI
                 Debug.LogError("No Navmesh Agent");
         }
 
+        void OnEnable()
+        {
+            drinkTime = 0;
+        }
+
         void Update()
         {
+            drinkTime += Time.deltaTime;
+            if (drinkTime < Duration) return;
+
             if (coffeeMan.TargetCoffee is not null &&
-                Vector3.Distance(coffeeMan.TargetCoffee.gameObject.transform.position, gameObject.transform.position) < InteractionReach &&
-                coffeeMan.TargetCoffee.status == Interactable.Status.Usable)
+                Vector3.Distance(coffeeMan.TargetCoffee.gameObject.transform.position, gameObject.transform.position) <= InteractionReach &&
+                coffeeMan.TargetCoffee.Amount > 0)
             {
-                coffeeMan.TargetCoffee.status = Interactable.Status.Used;
+                coffeeMan.TargetCoffee.Amount -= DrinkAmount;
                 Debug.Log("Drank Coffee");
                 manager.Transition(this, FinishedTransitition);
             }

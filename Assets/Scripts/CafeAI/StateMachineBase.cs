@@ -35,6 +35,7 @@ namespace CatCafeAI
         
         public void Transition(State from, State to)
         {
+        
             from.enabled = false;
             if (to is not null)
                 to.enabled = true;

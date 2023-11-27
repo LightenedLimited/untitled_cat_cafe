@@ -28,5 +28,6 @@ namespace CatCafeAI
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
         }
+
     }
 }

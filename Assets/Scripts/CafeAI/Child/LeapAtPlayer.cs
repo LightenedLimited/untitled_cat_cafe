@@ -31,12 +31,26 @@ namespace CatCafeAI
                 Debug.LogError("Statemanager needs to have patience");
             else
                 patienceMan = (IPatience)manager;
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            GetPlayer();
+        }
+        private GameObject GetPlayer()
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length == 0)
+            {
+                Debug.Log("No Player (Tag an Object with 'Player')");
+                return null;
+            }
+            else
+                return players[0];
         }
 
         void OnEnable()
         {
-            gameObject.transform.LookAt(player.transform);
+            if (player is null)
+                GetPlayer();
+            if (player is not null)
+                gameObject.transform.LookAt(player.transform);
             hasLeapt = false;
             LeapTimer = 0;
 

@@ -8,28 +8,31 @@ namespace CatCafeAI
     interface ISeesCoffee
     {
         // public List<GameObject> 
-        Interactable TargetCoffee
+        Coffee TargetCoffee
         {
             get;
             set;
         }
 
-        public static Interactable LookForCoffee(GameObject g) {
-            Interactable[] coffees = UnityEngine.Object.FindObjectsOfType<Interactable>();
+        public static Coffee LookForCoffee(GameObject g) {
+            Coffee[] coffees = UnityEngine.Object.FindObjectsByType<Coffee>(FindObjectsSortMode.None);
             if (coffees.Length == 0)
             {
                 return null;
             }
             float minDistance = 10000;
-            Interactable closestCoffee = null;
-            foreach (Interactable c in coffees)
+            Coffee closestCoffee = null;
+            foreach (Coffee c in coffees)
             {
-                if (c.status == Interactable.Status.Usable)
+                if (c.Amount > 0)
                 {
                     Transform coffeeTransform = c.gameObject.transform;
                     float distance = Vector3.Distance(coffeeTransform.position, g.transform.position);
                     if (distance < minDistance)
+                    {
                         closestCoffee = c;
+                        minDistance = distance;
+                    }
                 }
             }
             return closestCoffee;

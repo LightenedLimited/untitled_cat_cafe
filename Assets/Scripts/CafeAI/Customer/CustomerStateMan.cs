@@ -14,8 +14,8 @@ namespace CatCafeAI
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
         }
-        private Interactable targetCoffee;
-        public Interactable TargetCoffee{
+        private Coffee targetCoffee;
+        public Coffee TargetCoffee{
             get => targetCoffee;
             set => targetCoffee = value;
         }

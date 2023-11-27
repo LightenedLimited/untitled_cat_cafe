@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Seatable : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public enum SeatType {Cushion, Booth};
+    [SerializeField] public Vector3 SeatOffset;
+    public bool occupied = false;
+    // private GameObject occupant = false;
+
     void Start()
-    {
-        
-    }
+    { }
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
+    { }
 }

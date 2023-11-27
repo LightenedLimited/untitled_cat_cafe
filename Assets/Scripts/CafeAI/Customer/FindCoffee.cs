@@ -31,7 +31,7 @@ namespace CatCafeAI
         {
             if (coffeeMan.TargetCoffee is null)
             {
-                Interactable nextCoffee = ISeesCoffee.LookForCoffee(gameObject);
+                Coffee nextCoffee = ISeesCoffee.LookForCoffee(gameObject);
                 if (nextCoffee is not null)
                 {
                     agent.SetDestination(nextCoffee.gameObject.transform.position);
@@ -46,7 +46,7 @@ namespace CatCafeAI
             }
             else
             {
-                if (coffeeMan.TargetCoffee.status != Interactable.Status.Usable)
+                if (coffeeMan.TargetCoffee.Amount <= 0)
                 {
                     coffeeMan.TargetCoffee = null;
                 }
