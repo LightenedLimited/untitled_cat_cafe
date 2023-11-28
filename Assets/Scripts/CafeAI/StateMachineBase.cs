@@ -19,8 +19,8 @@ namespace CatCafeAI
     // State managers will also need to hold information that persists between states
     public abstract class StateMan : MonoBehaviour
     {
-        [SerializeField]
-        public State StartingState;
+        [SerializeField] public State StartingState;
+        public State ActiveState;
         protected virtual void Awake()
         {
             var states = gameObject.GetComponents<State>();
@@ -31,7 +31,6 @@ namespace CatCafeAI
             }
             ActiveState = StartingState;
         }
-        public State ActiveState;
         
         public void Transition(State from, State to)
         {

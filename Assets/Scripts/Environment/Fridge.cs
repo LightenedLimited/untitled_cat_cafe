@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class ChefStateMan : MonoBehaviour
+public class Fridge : MonoBehaviour
 {
     // Start is called before the first frame update
+    // List<PrefabAssetType> Things;
     void Start()
     {
         
@@ -14,5 +16,9 @@ public class ChefStateMan : MonoBehaviour
     void Update()
     {
         
+    }
+    public void Open()
+    {
+        Debug.Log("Fridge has been opened");
     }
 }

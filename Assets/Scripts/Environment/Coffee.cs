@@ -9,6 +9,7 @@ public class Coffee : MonoBehaviour
     [SerializeField] public float tipAngle = 45f;
     [SerializeField] public float amount = 1.0f;
     // // Start is called before the first frame update
+    private Renderer renderer;
     public float Amount
     {
         get { return amount; }
@@ -21,6 +22,7 @@ public class Coffee : MonoBehaviour
     }
     void Start()
     {
+        renderer = gameObject.GetComponent<Renderer>();
         UpdateColor();
     }
 
@@ -37,10 +39,6 @@ public class Coffee : MonoBehaviour
     // // update color of item
     private void UpdateColor()
     {
-        var renderer = gameObject.GetComponent<Renderer>();
-        if (renderer is not null)
-        {
-            renderer.material.SetColor("_Color", Color.Lerp(Color.green, Color.red, amount));
-        }
+        renderer.material.SetColor("_Color", Color.Lerp(Color.red, Color.green, amount));
     }
 }

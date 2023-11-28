@@ -9,7 +9,7 @@ namespace CatCafeAI
 {
     public class DrinkCoffee : State
     {
-        [SerializeField] public State FinishedTransitition;
+        [SerializeField] public State FinishedTransition;
         [SerializeField] public float InteractionReach = 1.5f;
         [SerializeField] public float DrinkAmount = 0.1f;
         [SerializeField] public float Duration = 1f;
@@ -49,12 +49,12 @@ namespace CatCafeAI
                 Debug.Log("Drank Coffee");
                 // Only the gamer benefits from drinking coffee at the moment
                 coffeeMan.DrinkCoffee();
-                manager.Transition(this, FinishedTransitition);
+                manager.Transition(this, FinishedTransition);
             }
             else
             {
                 Debug.Log("Failed to drink coffee");
-                manager.Transition(this, FinishedTransitition);
+                manager.Transition(this, FinishedTransition);
             }
         }
     }
