@@ -216,4 +216,17 @@ public class PlayerController : MonoBehaviour
             return; 
         }
     }
+
+    public void Yeet()
+    {
+        IEnumerator coroutine = Yote();
+        StartCoroutine(coroutine);
+    }
+    private IEnumerator Yote ()
+    {
+        rb.isKinematic = false;       
+        rb.AddForce(new Vector3(0, 5, 0), ForceMode.VelocityChange);
+        yield return new WaitForSeconds(2);
+        rb.isKinematic = true;
+    }
 }

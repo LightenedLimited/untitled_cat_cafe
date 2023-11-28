@@ -11,7 +11,7 @@ namespace CatCafeAI
         // an animation might be good though
         [SerializeField] public State FinishedTransition;
         [SerializeField] public State NoSeatTransition;
-        [SerializeField] public float InteractionReach = 1.5f;
+        [SerializeField] public float InteractionReach = 2f;
         [SerializeField] public float Duration = 1f;
         private Vector3 startPosition;
         private Vector3 endPosition;
@@ -27,20 +27,6 @@ namespace CatCafeAI
                 Debug.LogError("No Gamer Manager");
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
-            if (gamerMan.Seat is null)
-            {
-                Debug.Log("No seat to sit on");
-                manager.Transition(this, NoSeatTransition);
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, gamerMan.Seat.transform.position) > InteractionReach)
-                {
-                    gamerMan.Seat = null;
-                    Debug.Log("Seat too far");
-                    manager.Transition(this, NoSeatTransition);
-                }
-            }
         }
 
         // Update is called once per frame
@@ -53,6 +39,21 @@ namespace CatCafeAI
             startDirection = transform.rotation;
             endDirection = gamerMan.Seat.transform.rotation;
             timer = 0;
+
+            if (gamerMan.Seat is null)
+            {
+                Debug.Log("No seat to sit on");
+                manager.Transition(this, NoSeatTransition);
+            }
+            else if (Vector3.Distance(transform.position, gamerMan.Seat.transform.position) > InteractionReach)
+            {
+                Debug.Log("Seat too far");
+                manager.Transition(this, NoSeatTransition);
+            }
+            else
+            {
+                gamerMan.Seat.TrySit(gameObject);
+            }
         }
 
         void OnDisable()

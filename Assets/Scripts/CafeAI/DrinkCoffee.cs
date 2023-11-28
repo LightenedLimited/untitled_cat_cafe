@@ -32,6 +32,8 @@ namespace CatCafeAI
         void OnEnable()
         {
             drinkTime = 0;
+            if (coffeeMan.TargetCoffee is null)
+                coffeeMan.TargetCoffee = ISeesCoffee.LookForCoffee(gameObject);
         }
 
         void Update()
@@ -45,6 +47,8 @@ namespace CatCafeAI
             {
                 coffeeMan.TargetCoffee.Amount -= DrinkAmount;
                 Debug.Log("Drank Coffee");
+                // Only the gamer benefits from drinking coffee at the moment
+                coffeeMan.DrinkCoffee();
                 manager.Transition(this, FinishedTransitition);
             }
             else

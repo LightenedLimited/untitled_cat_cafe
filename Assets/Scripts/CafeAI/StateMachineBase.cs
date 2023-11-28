@@ -35,7 +35,11 @@ namespace CatCafeAI
         
         public void Transition(State from, State to)
         {
-        
+            if (from == to)
+            {
+                Debug.Log("transitioning to self");
+                return;
+            }
             from.enabled = false;
             if (to is not null)
                 to.enabled = true;

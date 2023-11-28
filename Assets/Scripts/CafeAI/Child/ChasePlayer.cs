@@ -41,12 +41,12 @@ namespace CatCafeAI
             }
             if (Vector3.Distance(gameObject.transform.position, player.transform.position) < CloseThreshold)
             {
-                Debug.Log("Close to Player");
+                // Debug.Log("Close to Player");
                 manager.Transition(this, CloseTransition);
             }
             if (chaseTimeLeft < 0)
             {
-                Debug.Log("Did not get close to player :(");
+                // Debug.Log("Did not get close to player :(");
                 manager.Transition(this, FailTransition);
             }
             // On collision enter with player, something?
@@ -56,7 +56,7 @@ namespace CatCafeAI
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Caught Player");
+                // Debug.Log("Caught Player");
                 MeshRenderer r;
                 if(TryGetComponent(out r))
                     r.material.SetColor("_Color", Color.green);

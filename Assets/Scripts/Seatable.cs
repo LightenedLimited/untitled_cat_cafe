@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Seatable : MonoBehaviour
 {
-    public enum SeatType {Cushion, Booth};
+    public enum SeatType { Cushion, Booth };
     [SerializeField] public Vector3 SeatOffset;
-    public bool occupied = false;
-    // private GameObject occupant = false;
+    [SerializeField] public SeatType Type;
 
-    void Start()
-    { }
+    private GameObject occupant;
 
-    // Update is called once per frame
-    void Update()
-    { }
+    public bool Occupied => occupant is not null;
+    public GameObject Occupant => occupant;
+
+
+
+    public bool TrySit(GameObject g)
+    {
+        if (!Occupied)
+        {
+            occupant = g;
+            return true;
+        }
+        else
+            return false;
+    }
+    public void Leave()
+    {
+        occupant = null;
+    }
 }

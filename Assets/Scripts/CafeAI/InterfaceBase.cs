@@ -37,6 +37,7 @@ namespace CatCafeAI
             }
             return closestCoffee;
         }
+        public void DrinkCoffee();
     }
 
     // Provides a tracker for how much patience a NPC has left (Child, Customer)

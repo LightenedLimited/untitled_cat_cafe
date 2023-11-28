@@ -38,7 +38,7 @@ namespace CatCafeAI
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             if (players.Length == 0)
             {
-                Debug.Log("No Player (Tag an Object with 'Player')");
+                Debug.LogError("No Player (Tag an Object with 'Player')");
                 return null;
             }
             else
