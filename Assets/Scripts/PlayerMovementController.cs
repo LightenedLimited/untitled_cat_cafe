@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject jumpObject;
 
-    private Vector3 desiredJumpLocation; 
+    private Vector3 desiredJumpLocation;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,10 +56,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(duringJump)
-        {
-
-        }
     }
 
     private void FixedUpdate()

@@ -5,21 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Canvas pauseScreen;
+    public Canvas taskScreen;
 
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        pauseScreen.enabled = false;
+        taskScreen.enabled = false; 
+    }
+
+
+    public void turnOnPaused()
+    {
+        pauseScreen.enabled = true; 
+    }
+
+    public void turnOffPaused()
+    {
+        pauseScreen.enabled = false;
+    }
+
+
+    public void turnOnTaskManager()
+    {
+        taskScreen.enabled = true; 
+    }
+    public void turnOffTaskManger()
+    {
+        taskScreen.enabled = false; 
     }
 
     public void StartGame()
     {
-        //Debug.Log("TODO: start the game");
          SceneManager.LoadScene("Scenes/Cafe");
     }
 }
