@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d54828bdf52529e47a476b3dd3cd4a19, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,9 +227,9 @@ MonoBehaviour:
   Transitions:
   - probability: 0.2
     next: {fileID: 7530631237224591414}
-  - probability: 0.4
+  - probability: 0.3
     next: {fileID: 487009259561065468}
-  - probability: 0.4
+  - probability: 0.5
     next: {fileID: 2874676010892171411}
   ActionInterval: 2
 --- !u!114 &487009259561065468

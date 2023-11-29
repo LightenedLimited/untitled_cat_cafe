@@ -44,8 +44,5 @@ namespace CatCafeAI
             else if (ActiveState is UseStove && agent.velocity.magnitude < 0.15f)
                 Panic();
         }
-        void Update ()
-        {
-        }
     }
 }

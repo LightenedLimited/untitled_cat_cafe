@@ -30,15 +30,15 @@ namespace CatCafeAI
 
         void OnEnable()
         {
-            // agent.enabled = false;
-            // body.isKinematic = false;
+            agent.enabled = false;
+            body.isKinematic = false;
             frustrationTime = FrustrationLength;
             patienceMan.Patience--;
         }
         // Update is called once per frame
         void Update()
         {
-            // body.AddTorque(transform.up, ForceMode.VelocityChange);
+            body.AddTorque(transform.up, ForceMode.VelocityChange);
             frustrationTime -= Time.deltaTime;
             if (frustrationTime <= 0)
             {
@@ -50,8 +50,8 @@ namespace CatCafeAI
         }
         void OnDisable()
         {
-            // agent.enabled = true;
-            // body.isKinematic = true;
+            agent.enabled = true;
+            body.isKinematic = true;
         }
     }
 

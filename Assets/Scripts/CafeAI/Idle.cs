@@ -27,7 +27,7 @@ namespace CatCafeAI
         protected override void Awake()
         {
             base.Awake();
-            probSum = Transitions.Aggregate(0f, (sum, tr) => tr.probability);
+            probSum = Transitions.Aggregate(0f, (sum, tr) => sum += tr.probability);
         }
         void OnEnable()
         {

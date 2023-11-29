@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickupObject
   - JumpEntry
+  - Food
   layers:
   - Default
   - TransparentFX

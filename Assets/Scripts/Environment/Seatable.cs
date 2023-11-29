@@ -7,9 +7,10 @@ public class Seatable : MonoBehaviour
     public enum SeatType { Cushion, Booth };
     [SerializeField] public Vector3 SeatOffset;
     [SerializeField] public SeatType Type;
-
     private GameObject occupant;
 
+    public Vector3 SeatPosition => gameObject.transform.position + SeatOffset;
+    public Quaternion SeatRotation => gameObject.transform.rotation;
     public bool Occupied => occupant is not null;
     public GameObject Occupant => occupant;
 

@@ -50,15 +50,14 @@ namespace CatCafeAI
                 Debug.Log("Seat too far");
                 manager.Transition(this, NoSeatTransition);
             }
-            else
+            else if (!gamerMan.Seat.TrySit(gameObject))
             {
-                gamerMan.Seat.TrySit(gameObject);
+                Debug.Log("Seat occupied");
             }
-        }
-
-        void OnDisable()
-        {
-            // agent.enabled = true;
+            else 
+            {
+                Debug.Log("Sat down");
+            }
         }
         void Update()
         {

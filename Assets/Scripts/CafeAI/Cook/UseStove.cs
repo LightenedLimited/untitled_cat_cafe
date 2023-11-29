@@ -19,14 +19,14 @@ namespace CatCafeAI
         private NavMeshAgent agent;
         private IPatience patienceMan;
         private CookStateMan cookMan;
-        private PlayerController player;
+        // private PlayerController player;
         protected override void Awake()
         {
             base.Awake();
             if (!TryGetComponent(out agent))
                 Debug.LogError("No Navmesh Agent");
-            if (!TryGetComponent(out player))
-                Debug.Log("No Player");
+            // if (!TryGetComponent(out player))
+            //     Debug.Log("No Player");
             if (!TryGetComponent(out cookMan))
                 Debug.Log("StateManager is not a Cook");
             if (manager is IPatience)

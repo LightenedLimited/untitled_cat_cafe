@@ -30,8 +30,7 @@ namespace CatCafeAI
 
         void Update()
         {
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance
-                || agent.isStopped)
+            if (agent.enabled && (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance || agent.isStopped))
             {
                 WaitTimer += Time.deltaTime;
                 if (WaitTimer > WaitTime)

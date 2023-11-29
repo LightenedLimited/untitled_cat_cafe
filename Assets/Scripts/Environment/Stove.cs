@@ -7,10 +7,10 @@ public class Stove : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private float maxDanger = 50;
-    [SerializeField] private float baseDangerRate = 2;
+    [SerializeField] private float baseDangerRate = 1;
     public float MaxDanger => maxDanger;
     public bool OnFire => danger >= maxDanger;
-    private int numFood = 0;
+    public int numFood = 0;
     public int NumFood => numFood;
     private float danger = 0;
     private float timer = 0;
@@ -22,17 +22,21 @@ public class Stove : MonoBehaviour
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Food") &&
-            coll.gameObject.transform.position.y >= gameObject.transform.position.y)
+        Food stoveFood;
+        if (coll.gameObject.TryGetComponent<Food>(out stoveFood) &&
+            coll.gameObject.transform.position.y >= transform.position.y)
         {
+            stoveFood.OnStove = true;
             numFood++;
         }
     }
     void OnCollisionExit(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Food") &&
-            coll.gameObject.transform.position.y >= gameObject.transform.position.y)
+        Food stoveFood;
+        if (coll.gameObject.TryGetComponent<Food>(out stoveFood) &&
+            coll.gameObject.transform.position.y >= transform.position.y)
         {
+            stoveFood.OnStove = false;
             numFood--;
         }
     }

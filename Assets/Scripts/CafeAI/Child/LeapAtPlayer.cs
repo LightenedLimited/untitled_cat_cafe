@@ -31,7 +31,7 @@ namespace CatCafeAI
                 Debug.LogError("Statemanager needs to have patience");
             else
                 patienceMan = (IPatience)manager;
-            GetPlayer();
+            player = GetPlayer();
         }
         private GameObject GetPlayer()
         {
@@ -48,13 +48,12 @@ namespace CatCafeAI
         void OnEnable()
         {
             if (player is null)
-                GetPlayer();
+                player = GetPlayer();
             if (player is not null)
                 gameObject.transform.LookAt(player.transform);
             hasLeapt = false;
             LeapTimer = 0;
 
-            // agent.isStopped = true;
             body.isKinematic = false;
             agent.enabled = false;
         }
@@ -62,7 +61,6 @@ namespace CatCafeAI
         {
             body.isKinematic = true;
             agent.enabled = true;
-            // agent.isStopped = false;
         }
         void Update()
         {
@@ -87,7 +85,15 @@ namespace CatCafeAI
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                // Debug.Log("Caught Player");
+                Debug.Log("Caught Player");
+
+                PlayerController playerMan;
+                if (player.TryGetComponent(out playerMan))
+                    playerMan.Yeet();
+                
+                // add some recoil to the child
+                body.AddForce(Vector3.Normalize(player.transform.position + transform.position)*2 + new Vector3(0,1,0), ForceMode.VelocityChange);
+
                 patienceMan.Patience = patienceMan.MaxPatience;
                 MeshRenderer r;
                 if(TryGetComponent(out r))

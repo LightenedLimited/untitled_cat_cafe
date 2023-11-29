@@ -17,7 +17,9 @@ namespace CatCafeAI
         public Seatable Seat => seat;
         // private Seatable Seat;
         // Sleeps if Alertness hits 0
+        [SerializeField] public State NoSeatTransition;
         [SerializeField] public float MaxAlertness = 60;
+        [SerializeField] public float NoSeatDistance = 1f;
         [SerializeField] public float CoffeeAlertness = 10;
         public float Alertness;
         
@@ -51,6 +53,11 @@ namespace CatCafeAI
         void Update()
         {
             Alertness -= Time.deltaTime;
+            if ((seat == null || Vector3.Distance(seat.SeatPosition, transform.position) >= NoSeatDistance) 
+                && (ActiveState != NoSeatTransition))
+            {
+                base.Transition(ActiveState, NoSeatTransition);
+            }
         }
 
         public void DrinkCoffee()
