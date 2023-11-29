@@ -14,7 +14,7 @@ namespace CatCafeAI
         [SerializeField] public float DrinkAmount = 0.1f;
         [SerializeField] public float Duration = 1f;
 
-        private float drinkTime = 0;
+        private float drinkTimer = 0;
         private ISeesCoffee coffeeMan;
         private NavMeshAgent agent;
         // Start is called before the first frame update
@@ -31,31 +31,32 @@ namespace CatCafeAI
 
         void OnEnable()
         {
-            drinkTime = 0;
+            drinkTimer = 0;
             if (coffeeMan.TargetCoffee is null)
                 coffeeMan.TargetCoffee = ISeesCoffee.LookForCoffee(gameObject);
         }
 
         void Update()
         {
-            drinkTime += Time.deltaTime;
-            if (drinkTime < Duration) return;
-
-            if (coffeeMan.TargetCoffee is not null &&
-                Vector3.Distance(coffeeMan.TargetCoffee.gameObject.transform.position, gameObject.transform.position) <= InteractionReach &&
-                coffeeMan.TargetCoffee.Amount > 0)
+            if (drinkTimer > Duration)
             {
-                coffeeMan.TargetCoffee.Amount -= DrinkAmount;
-                Debug.Log("Drank Coffee");
-                // Only the gamer benefits from drinking coffee at the moment
-                coffeeMan.DrinkCoffee();
-                manager.Transition(this, FinishedTransition);
+                if (coffeeMan.TargetCoffee is not null &&
+                    Vector3.Distance(coffeeMan.TargetCoffee.gameObject.transform.position, gameObject.transform.position) <= InteractionReach &&
+                    coffeeMan.TargetCoffee.Amount > 0)
+                {
+                    coffeeMan.TargetCoffee.Amount -= DrinkAmount;
+                    Debug.Log("Drank Coffee");
+                    // Only the gamer benefits from drinking coffee at the moment
+                    coffeeMan.DrinkCoffee();
+                    manager.Transition(this, FinishedTransition);
+                }
+                else
+                {
+                    Debug.Log("Failed to drink coffee");
+                    manager.Transition(this, FinishedTransition);
+                }
             }
-            else
-            {
-                Debug.Log("Failed to drink coffee");
-                manager.Transition(this, FinishedTransition);
-            }
+            drinkTimer += Time.deltaTime;
         }
     }
 }

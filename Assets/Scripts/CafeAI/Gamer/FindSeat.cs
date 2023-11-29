@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -28,29 +29,9 @@ namespace CatCafeAI
 
         void OnEnable()
         {
-            SeatExists = true;
-        }
+            Debug.Log("Pathing to Seat");
 
-        // Update is called once per frame
-        void Update()
-        {
-
-            if (gamerMan.Seat is null && SeatExists && targetSeat is null)
-            {
-                PathToSeat();
-                Debug.Log("Pathing to Seat");
-            }
-            // if we've arrived, go next
-            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
-            {
-                gamerMan.Sit(targetSeat);
-                Debug.Log("Reached Coffee");
-                manager.Transition(this, AtSeatTransition);
-            }
-        }
-
-        void PathToSeat()
-        {
+            agent.enabled = true;
             Seatable[] seats = FindObjectsByType<Seatable>(FindObjectsSortMode.None);
             float minDistance = 10000;
             foreach (Seatable s in seats)
@@ -65,10 +46,23 @@ namespace CatCafeAI
                     }
                 }
             }
+
             if (targetSeat is not null)
                 agent.destination = targetSeat.gameObject.transform.position;
             else 
-                SeatExists = false;
+                manager.Transition(this, NoSeatTransition);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // if we've arrived, go next
+            if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            {
+                gamerMan.Sit(targetSeat);
+                Debug.Log("Reached Coffee");
+                manager.Transition(this, AtSeatTransition);
+            }
         }
     }
 }

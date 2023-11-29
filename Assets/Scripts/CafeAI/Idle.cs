@@ -49,6 +49,7 @@ namespace CatCafeAI
                     if (nextVal <= 0)
                     {
                         manager.Transition(this, Transitions[i].next);
+                        break;
                     }
                 }
             }
