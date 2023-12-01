@@ -1,0 +1,24 @@
+PIXEL FONTS - LATIN ACCENTS PACK 3.0
+Thank you for purchasing this asset.
+If you find it useful, please support future updates by leaving a review:
+https://assetstore.unity.com/packages/2d/fonts/pixel-fonts-latin-accents-pack-201596
+
+
+DEMO
+Lauch “Demo Scene” to see fonts in action
+
+
+VERSION RELEASE NOTES
+Clover font added
+BrushAssassin font added
+
+
+KNOWN TMP BUGS
+"MissingReferenceException: The object of type 'Material' has been destroyed" is a known TeshMesh Pro bug.
+https://forum.unity.com/threads/getting-error-message-missingreferenceexception-the-object-of-type-material-has-been-destroyed.799671/#post-8453603
+
+
+SUPPORT / CONTACT
+www.twitter.com/pixelmush_
+pixelmlad@gmail.com
+https://assetstore.unity.com/publishers/17384
