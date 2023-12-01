@@ -273,7 +273,7 @@ MonoBehaviour:
   initialAngle: 0
   jumpThreshold: 35
   catHeight: 0.5
-  jumpAnimationTime: 0.8
+  jumpAnimationTime: 0.55
   anim: {fileID: 491352417}
 --- !u!95 &491352417
 Animator:
