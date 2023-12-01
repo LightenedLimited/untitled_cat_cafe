@@ -173,7 +173,6 @@ public class PlayerController : MonoBehaviour
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
-        turnOffCollision(); 
         
     }
 
@@ -187,6 +186,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(height); 
         rb.velocity = xz_velocity + y_velocity;
         duringJump = true;
+        turnOffCollision();
     }
 
     public void jumpEnd()
@@ -195,23 +195,11 @@ public class PlayerController : MonoBehaviour
     }
     public void turnOnCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach (Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = true;
-            return;
-        }
+        GetComponent<BoxCollider>().enabled = true;
     }
     public void turnOffCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach(Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = false;
-            return; 
-        }
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void Yeet()
