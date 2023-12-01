@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float initialAngle = -90f;
     public float jumpThreshold = 10f;
     public float catHeight = 2f;
-    public float jumpAnimationTime = 1.5f; 
+    public float jumpAnimationTime = 1.5f;
 
     public Animator anim;
 
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (duringJump) return; 
+        if (duringJump) return;
 
         Vector3 move = Quaternion.Euler(0, initialAngle, 0) * new Vector3(moveX, 0, moveY).normalized * velocity;
         move += new Vector3(0, rb.velocity.y, 0); 
@@ -171,7 +171,9 @@ public class PlayerController : MonoBehaviour
         if (!inJumpRange || duringJump) return;
         float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized);
         if (angle > jumpThreshold) return;
-        //disable movement during jump? 
+        //disable movement during jump?
+        duringJump = true;
+
         anim.SetTrigger("jump");
         
     }
@@ -183,9 +185,7 @@ public class PlayerController : MonoBehaviour
         Vector3 xz_velocity = new Vector3(displacement.x / jumpAnimationTime * jumpXZMultiplier, 0, displacement.z / jumpAnimationTime * jumpXZMultiplier); 
         float height = jumpObject.transform.position.y - this.transform.position.y + catHeight;
         Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
-        Debug.Log(height); 
         rb.velocity = xz_velocity + y_velocity;
-        duringJump = true;
         turnOffCollision();
     }
 
