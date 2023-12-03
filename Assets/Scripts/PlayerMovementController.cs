@@ -173,8 +173,7 @@ public class PlayerController : MonoBehaviour
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
-        turnOffCollision(); 
-        
+        duringJump = true;
     }
 
     public void ApplyJumpVelocity()
@@ -186,7 +185,8 @@ public class PlayerController : MonoBehaviour
         Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
         Debug.Log(height); 
         rb.velocity = xz_velocity + y_velocity;
-        duringJump = true;
+        
+        turnOffCollision();
     }
 
     public void jumpEnd()
@@ -195,23 +195,25 @@ public class PlayerController : MonoBehaviour
     }
     public void turnOnCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach (Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = true;
-            return;
-        }
+        GetComponent<BoxCollider>().enabled = true;    
+        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
+        //foreach (Collider collider in colliders)
+        //{
+        //    if (collider.isTrigger == true) continue;
+        //    collider.enabled = true;
+        //    return;
+        //}
     }
     public void turnOffCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach(Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = false;
-            return; 
-        }
+        GetComponent<BoxCollider>().enabled = false;
+        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
+        //foreach(Collider collider in colliders)
+        //{
+        //    if (collider.isTrigger == true) continue;
+        //    collider.enabled = false;
+        //    return; 
+        //}
     }
 
     public void Yeet()
