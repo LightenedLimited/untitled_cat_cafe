@@ -169,12 +169,16 @@ public class PlayerController : MonoBehaviour
     void OnJump() 
     {
         if (!inJumpRange || duringJump) return;
-        float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized);
+        //float angle = Vector3.Angle(this.transform.forward, (jumpObject.transform.position - this.transform.position).normalized);
+        Vector2 jumpObjectPos = new Vector2(jumpObject.transform.position.x, jumpObject.transform.position.z);
+        Vector2 thisObjectPos = new Vector2(this.transform.position.x, this.transform.position.z);
+        Vector2 forwardVector = new Vector2(this.transform.forward.x, this.transform.forward.z); 
+        float angle = Vector2.Angle(forwardVector, (jumpObjectPos - thisObjectPos).normalized);
+        Debug.Log(angle); 
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
-        turnOffCollision(); 
-        
+        duringJump = true;
     }
 
     public void ApplyJumpVelocity()
@@ -186,7 +190,8 @@ public class PlayerController : MonoBehaviour
         Vector3 y_velocity = new Vector3(0, (height / jumpAnimationTime - 0.5f * gravity * jumpAnimationTime), 0);
         Debug.Log(height); 
         rb.velocity = xz_velocity + y_velocity;
-        duringJump = true;
+        
+        turnOffCollision();
     }
 
     public void jumpEnd()
@@ -195,23 +200,25 @@ public class PlayerController : MonoBehaviour
     }
     public void turnOnCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach (Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = true;
-            return;
-        }
+        GetComponent<BoxCollider>().enabled = true;    
+        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
+        //foreach (Collider collider in colliders)
+        //{
+        //    if (collider.isTrigger == true) continue;
+        //    collider.enabled = true;
+        //    return;
+        //}
     }
     public void turnOffCollision()
     {
-        Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        foreach(Collider collider in colliders)
-        {
-            if (collider.isTrigger == true) continue;
-            collider.enabled = false;
-            return; 
-        }
+        GetComponent<BoxCollider>().enabled = false;
+        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
+        //foreach(Collider collider in colliders)
+        //{
+        //    if (collider.isTrigger == true) continue;
+        //    collider.enabled = false;
+        //    return; 
+        //}
     }
 
     public void Yeet()

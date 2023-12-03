@@ -5,6 +5,7 @@ using System;
 
 public class Coffee : MonoBehaviour
 {
+
     // Should be between 0 and 1
     [SerializeField] public float tipAngle = 45f;
     [SerializeField] public float amount = 1.0f;
@@ -33,6 +34,7 @@ public class Coffee : MonoBehaviour
         if (Vector3.Angle(gameObject.transform.up, Vector3.up) > tipAngle)
         {
             Amount = 0;
+            TaskManager.Instance.incrementCoffee(); 
         }
     }
 

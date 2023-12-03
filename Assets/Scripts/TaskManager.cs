@@ -5,6 +5,8 @@ using UnityEngine;
 public class TaskManager : MonoBehaviour
 {
 
+    public static TaskManager Instance; 
+
     public int taskSize; 
 
     // Start is called before the first frame update
@@ -32,6 +34,14 @@ public class TaskManager : MonoBehaviour
     // Update is called once per frame
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return; 
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); 
+
         taskStatus = new bool[taskSize];
         for (int i = 0; i < taskSize; i++) taskStatus[i] = false;
 
