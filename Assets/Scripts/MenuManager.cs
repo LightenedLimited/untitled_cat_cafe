@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro; 
 
 public class MenuManager : MonoBehaviour
@@ -71,8 +70,5 @@ public class MenuManager : MonoBehaviour
         taskScreen.enabled = false; 
     }
 
-    public void StartGame()
-    {
-         SceneManager.LoadScene("Scenes/Cafe");
-    }
+    
 }
