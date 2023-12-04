@@ -13,12 +13,17 @@ namespace CatCafeAI
         [SerializeField] float WaitTime = 2f;
         private NavMeshAgent agent;
         private float WaitTimer;
+
+        private Animator anim; 
+
         protected override void Awake()
         {
             base.Awake();
             WaitTimer = 0;
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
+
+            anim = GetComponent<Animator>(); 
         }
 
         void OnEnable()
@@ -37,6 +42,7 @@ namespace CatCafeAI
                 {
                     WaitTimer = 0;
                     Debug.Log("Wander Reached Target (or stopped)");
+                    anim.SetBool("walking", false);
                     PickNext();
                 }
             }
@@ -51,6 +57,7 @@ namespace CatCafeAI
             {
                 NavMeshHit hit;
                 Debug.Log("Setting new target");
+                anim.SetBool("walking", true); 
                 Vector3 randomTarget = gameObject.transform.position + UnityEngine.Random.insideUnitSphere * DistanceLimit;
                 randomTarget.y = gameObject.transform.position.y;
                 if (NavMesh.SamplePosition(randomTarget, out hit, DistanceLimit/2, NavMesh.AllAreas))

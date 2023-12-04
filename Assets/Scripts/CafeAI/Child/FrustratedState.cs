@@ -15,6 +15,8 @@ namespace CatCafeAI
         private IPatience patienceMan;
         private float frustrationTime;
         private Rigidbody body;
+
+        private Animator anim;
         protected override void Awake()
         {
             base.Awake();
@@ -28,12 +30,18 @@ namespace CatCafeAI
                 patienceMan = (IPatience)manager;
         }
 
+        private void Start()
+        {
+            anim = GetComponent<Animator>(); 
+        }
+
         void OnEnable()
         {
             agent.enabled = false;
             body.isKinematic = false;
             frustrationTime = FrustrationLength;
             patienceMan.Patience--;
+            
         }
         // Update is called once per frame
         void Update()
