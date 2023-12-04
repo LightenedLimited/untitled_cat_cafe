@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6562471164041236366}
   - component: {fileID: 3665849679768943846}
   m_Layer: 0
-  m_Name: Counter
+  m_Name: Oven(old)
   m_TagString: JumpEntry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,5 +125,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.25, y: 2, z: 2}
+  m_Size: {x: 0.8, y: 0.88, z: 1.06}
   m_Center: {x: 0, y: 0, z: 0}
