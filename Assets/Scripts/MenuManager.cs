@@ -11,9 +11,17 @@ public class MenuManager : MonoBehaviour
     public Canvas pauseScreen;
     public Canvas taskScreen;
 
+    [SerializeField]
+    GameObject taskContainer;
+
+    [SerializeField]
+    AudioSource musicSource;
+
     private TaskManager taskManager; 
 
     private string[] taskCompleteStrings; 
+
+
 
     // Update is called once per frame
     private void Start()
@@ -25,7 +33,6 @@ public class MenuManager : MonoBehaviour
         taskCompleteStrings[1] = "<s>Dodge Child 3 Times!</s>";
         taskCompleteStrings[2] = "<s>Set Stove on Fire</s>";
         taskCompleteStrings[3] = "<s>Sleep on Laptop</s>";
-
     }
 
     private void Update()
@@ -36,7 +43,7 @@ public class MenuManager : MonoBehaviour
         {
             if (!taskStatus[i]) continue;
 
-            Transform textObject = taskScreen.transform.Find("Tasks").GetChild(i);
+            Transform textObject = taskContainer.transform.GetChild(i);
             textObject.GetComponent<TMP_Text>().text = taskCompleteStrings[i]; 
         }
 
@@ -44,12 +51,14 @@ public class MenuManager : MonoBehaviour
 
     public void turnOnPaused()
     {
-        pauseScreen.enabled = true; 
+        pauseScreen.enabled = true;
+        musicSource.Pause();
     }
 
     public void turnOffPaused()
     {
         pauseScreen.enabled = false;
+        musicSource.UnPause();
     }
 
 

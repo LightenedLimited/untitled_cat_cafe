@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Cafe.unity
+    path: Assets/Scenes/Cafe-Nicolette.unity
     guid: 068e1767afbf2f446ab34d897290e548
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
