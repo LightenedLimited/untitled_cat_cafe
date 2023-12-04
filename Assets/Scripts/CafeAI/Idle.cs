@@ -23,11 +23,13 @@ namespace CatCafeAI
 
         private float actionTimer = 0;
         private float probSum;
+        private Animator anim; 
         // Start is called before the first frame update
         protected override void Awake()
         {
             base.Awake();
             probSum = Transitions.Aggregate(0f, (sum, tr) => sum += tr.probability);
+            anim = GetComponent<Animator>(); 
         }
         void OnEnable()
         {

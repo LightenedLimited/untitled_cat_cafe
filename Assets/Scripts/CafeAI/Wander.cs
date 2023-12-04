@@ -31,10 +31,25 @@ namespace CatCafeAI
             WaitTimer = 0;
             agent.enabled = true;
             PickNext();
+            anim.SetBool("walking", true);
+            Debug.Log("walking on state"); 
+        }
+        void OnDisable()
+        {
+            anim.SetBool("walking", false);
+            Debug.Log("walking off state");
         }
 
         void Update()
         {
+            if(agent.pathPending || agent.remainingDistance <= agent.stoppingDistance || agent.isStopped)
+            {
+                anim.SetBool("walking", false); 
+            }
+            else
+            {
+                anim.SetBool("walking", true);
+            }
             if (agent.enabled && (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance || agent.isStopped))
             {
                 WaitTimer += Time.deltaTime;
@@ -42,7 +57,6 @@ namespace CatCafeAI
                 {
                     WaitTimer = 0;
                     Debug.Log("Wander Reached Target (or stopped)");
-                    anim.SetBool("walking", false);
                     PickNext();
                 }
             }
@@ -57,7 +71,6 @@ namespace CatCafeAI
             {
                 NavMeshHit hit;
                 Debug.Log("Setting new target");
-                anim.SetBool("walking", true); 
                 Vector3 randomTarget = gameObject.transform.position + UnityEngine.Random.insideUnitSphere * DistanceLimit;
                 randomTarget.y = gameObject.transform.position.y;
                 if (NavMesh.SamplePosition(randomTarget, out hit, DistanceLimit/2, NavMesh.AllAreas))

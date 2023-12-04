@@ -20,6 +20,7 @@ namespace CatCafeAI
         protected override void Awake()
         {
             base.Awake();
+            anim = GetComponent<Animator>();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
             if (!TryGetComponent<Rigidbody>(out body))
@@ -30,13 +31,9 @@ namespace CatCafeAI
                 patienceMan = (IPatience)manager;
         }
 
-        private void Start()
-        {
-            anim = GetComponent<Animator>(); 
-        }
-
         void OnEnable()
         {
+            anim.SetBool("frustrated", true); 
             agent.enabled = false;
             body.isKinematic = false;
             frustrationTime = FrustrationLength;
@@ -58,6 +55,7 @@ namespace CatCafeAI
         }
         void OnDisable()
         {
+            anim.SetBool("frustrated", false);
             agent.enabled = true;
             body.isKinematic = true;
         }
