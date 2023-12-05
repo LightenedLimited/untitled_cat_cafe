@@ -12,7 +12,11 @@ public class MainMenuStartScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Scenes/Cafe"); 
+        SceneManager.LoadScene("Scenes/Cafe-AI");
+        main_menu_canvas.enabled = false;
+        options_canvas.enabled = false;
+        credits_canvas.enabled = false;
+        controls_canvas.enabled = false;
     }
 
     public void EnableOptions()
