@@ -22,14 +22,14 @@ public class InteractableController : MonoBehaviour
 
     public void highlightInteractable()
     {
-        Material[] mat = meshRenderer.materials;
-        mat[0] = highlight;
-        meshRenderer.materials = mat; 
+        //Material[] mat = meshRenderer.materials;
+        //mat[0] = highlight;
+        //meshRenderer.materials = mat; 
     }
     public void unHighlightInteractable()
     {
-        Material[] mat = meshRenderer.materials;
-        mat[0] = prehighlight;
-        meshRenderer.materials = mat;
+        //Material[] mat = meshRenderer.materials;
+        //mat[0] = prehighlight;
+        //meshRenderer.materials = mat;
     }
 }

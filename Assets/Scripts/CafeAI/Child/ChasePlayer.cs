@@ -18,6 +18,8 @@ namespace CatCafeAI
         private float pathTime;
         private float chaseTimeLeft;
         private NavMeshAgent agent;
+
+        private Animator anim; 
         protected override void Awake()
         {
             base.Awake();
@@ -29,11 +31,17 @@ namespace CatCafeAI
             player = GameObject.FindGameObjectsWithTag("Player")[0];
         }
 
+        private void Start()
+        {
+            anim = GetComponent<Animator>(); 
+        }
+
         // Update is called once per frame
         void Update()
         {
             pathTime -= Time.deltaTime;
             chaseTimeLeft -= Time.deltaTime;
+
             if (pathTime < 0 && !agent.pathPending)
             {
                 pathTime = PathInterval;

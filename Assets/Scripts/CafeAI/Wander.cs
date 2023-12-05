@@ -13,12 +13,17 @@ namespace CatCafeAI
         [SerializeField] float WaitTime = 2f;
         private NavMeshAgent agent;
         private float WaitTimer;
+
+        private Animator anim; 
+
         protected override void Awake()
         {
             base.Awake();
             WaitTimer = 0;
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
+
+            anim = GetComponent<Animator>(); 
         }
 
         void OnEnable()
@@ -26,10 +31,25 @@ namespace CatCafeAI
             WaitTimer = 0;
             agent.enabled = true;
             PickNext();
+            anim.SetBool("walking", true);
+            Debug.Log("walking on state"); 
+        }
+        void OnDisable()
+        {
+            anim.SetBool("walking", false);
+            Debug.Log("walking off state");
         }
 
         void Update()
         {
+            if(agent.pathPending || agent.remainingDistance <= agent.stoppingDistance || agent.isStopped)
+            {
+                anim.SetBool("walking", false); 
+            }
+            else
+            {
+                anim.SetBool("walking", true);
+            }
             if (agent.enabled && (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance || agent.isStopped))
             {
                 WaitTimer += Time.deltaTime;

@@ -201,24 +201,10 @@ public class PlayerController : MonoBehaviour
     public void turnOnCollision()
     {
         GetComponent<BoxCollider>().enabled = true;    
-        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        //foreach (Collider collider in colliders)
-        //{
-        //    if (collider.isTrigger == true) continue;
-        //    collider.enabled = true;
-        //    return;
-        //}
     }
     public void turnOffCollision()
     {
         GetComponent<BoxCollider>().enabled = false;
-        //Collider[] colliders = jumpObject.gameObject.GetComponents<BoxCollider>();
-        //foreach(Collider collider in colliders)
-        //{
-        //    if (collider.isTrigger == true) continue;
-        //    collider.enabled = false;
-        //    return; 
-        //}
     }
 
     public void Yeet()
@@ -228,9 +214,8 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator Yote ()
     {
-        rb.isKinematic = false;       
-        rb.AddForce(new Vector3(0, 5, 0), ForceMode.VelocityChange);
+        rb.velocity = new Vector3(0, 5, 0); 
         yield return new WaitForSeconds(2);
-        rb.isKinematic = true;
+        
     }
 }

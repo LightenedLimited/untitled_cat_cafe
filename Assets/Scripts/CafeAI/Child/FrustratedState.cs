@@ -15,9 +15,12 @@ namespace CatCafeAI
         private IPatience patienceMan;
         private float frustrationTime;
         private Rigidbody body;
+
+        private Animator anim;
         protected override void Awake()
         {
             base.Awake();
+            anim = GetComponent<Animator>();
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
             if (!TryGetComponent<Rigidbody>(out body))
@@ -30,10 +33,12 @@ namespace CatCafeAI
 
         void OnEnable()
         {
+            anim.SetBool("frustrated", true); 
             agent.enabled = false;
             body.isKinematic = false;
             frustrationTime = FrustrationLength;
             patienceMan.Patience--;
+            
         }
         // Update is called once per frame
         void Update()
@@ -50,6 +55,7 @@ namespace CatCafeAI
         }
         void OnDisable()
         {
+            anim.SetBool("frustrated", false);
             agent.enabled = true;
             body.isKinematic = true;
         }

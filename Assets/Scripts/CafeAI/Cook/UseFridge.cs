@@ -18,6 +18,8 @@ namespace CatCafeAI
         private IPatience patienceMan;
         private CookStateMan cookMan;
         private PlayerController player;
+        private Animator anim; 
+
         protected override void Awake()
         {
             base.Awake();
@@ -29,12 +31,15 @@ namespace CatCafeAI
                 Debug.Log("StateManager is not a Cook");
             if (manager is IPatience)
                 patienceMan = manager as IPatience;
+
+            anim = GetComponent<Animator>(); 
         }
         void OnEnable()
         {
             if (Vector3.Distance(transform.position, cookMan.Fridge.transform.position) >= InteractionReach) 
                 agent.destination = cookMan.Fridge.transform.position;
             timer = 0;
+            anim.SetTrigger("open_fridge"); 
         }
 
         // Update is called once per frame
