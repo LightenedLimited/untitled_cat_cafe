@@ -23,5 +23,5 @@ public class MainMenuStartScript : MonoBehaviour
         main_menu_canvas.enabled = true;
         options_canvas.enabled = false;
     }
-
+    
 }

@@ -13,7 +13,7 @@ public class TaskManager : MonoBehaviour
     private bool[] taskStatus;
 
     private int currentCoffees;
-    public const int maxCoffees = 4;
+    public const int maxCoffees = 5;
     public const int coffeeTaskIndex = 0;
 
     private int childDodged;

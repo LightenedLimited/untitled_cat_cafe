@@ -23,13 +23,12 @@ public class SettingsManager : MonoBehaviour
     {
         if(SettingsManager.Instance != null)
         {
-            setVolume(0.5f);
+            MainVolumeControl(0.5f);
         }
     }
-
-    public void setVolume(float newVolume)
+    public void MainVolumeControl(System.Single vol)
     {
-        SettingsManager.Instance.volume = newVolume; 
+        SettingsManager.Instance.volume = vol;
     }
 
 }
