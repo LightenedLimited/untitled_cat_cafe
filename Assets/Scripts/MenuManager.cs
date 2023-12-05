@@ -18,13 +18,22 @@ public class MenuManager : MonoBehaviour
 
     private TaskManager taskManager; 
 
-    private string[] taskCompleteStrings; 
+    private string[] taskCompleteStrings;
 
+    public static MenuManager Instance; 
 
 
     // Update is called once per frame
     private void Start()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return; 
+        }
+        Instance = this; 
+        DontDestroyOnLoad(gameObject); 
+
         pauseScreen.enabled = false;
         taskScreen.enabled = false;
         taskCompleteStrings = new string[4]; //TODO: remove hard code
