@@ -116,6 +116,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) // to see when the player enters the collider
     {
+        if(other.gameObject.tag == "Laptop")
+        {
+            Debug.Log("touching Laptop");
+            Laptop laptop = null;
+            if (other.gameObject.TryGetComponent(out laptop))
+                laptop.TrySit(gameObject);
+        }
         if (other.gameObject.tag == "PickupObject" && !hasObject) //on the object you want to pick up set the tag to be anything, in this case "object"
         {
             canpickup = true;  //set the pick up bool to true
@@ -209,12 +216,16 @@ public class PlayerController : MonoBehaviour
 
     public void Yeet()
     {
-        IEnumerator coroutine = Yote();
-        StartCoroutine(coroutine);
+        Yeet(new Vector3(0, 5, 0));
     }
-    private IEnumerator Yote ()
+    public void Yeet(Vector3 vel)
     {
-        rb.velocity = new Vector3(0, 5, 0); 
+        IEnumerator yeetCoroutine = Yote(vel);
+        StartCoroutine(yeetCoroutine);
+    }
+    private IEnumerator Yote (Vector3 vel)
+    {
+        rb.velocity = vel;
         yield return new WaitForSeconds(2);
         
     }

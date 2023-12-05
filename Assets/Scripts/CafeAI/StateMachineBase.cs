@@ -36,7 +36,7 @@ namespace CatCafeAI
         {
             if (from == to)
             {
-                Debug.Log("transitioning to self");
+                // Debug.Log("transitioning to self");
                 return;
             }
             from.enabled = false;

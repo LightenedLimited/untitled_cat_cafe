@@ -42,7 +42,7 @@ namespace CatCafeAI
 
         void Update()
         {
-            if(agent.pathPending || agent.remainingDistance <= agent.stoppingDistance || agent.isStopped)
+            if(agent.enabled && (agent.pathPending || agent.remainingDistance <= agent.stoppingDistance || agent.isStopped))
             {
                 anim.SetBool("walking", false); 
             }

@@ -49,6 +49,8 @@ public class Stove : MonoBehaviour
         {
             timer -= 1f;
             danger += baseDangerRate + numFood;
+            if (OnFire)
+                TaskManager.Instance.setStoveOnFire();
             UpdateColor();
         }
     }
@@ -61,6 +63,8 @@ public class Stove : MonoBehaviour
 
     private void UpdateColor()
     {
-        renderer.material.SetColor("_Color", Color.Lerp(Color.white, Color.red, danger/maxDanger));
+        // renderer.material.SetColor("_Color", Color.Lerp(Color.white, Color.red, danger/maxDanger));
+        renderer.material.SetColor("_Color", Color.Lerp(Color.clear, Color.red, danger/maxDanger));
+        return;
     }
 }

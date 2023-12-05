@@ -27,7 +27,7 @@ namespace CatCafeAI
         // Update is called once per frame
         void Update()
         {
-            body.AddTorque(transform.up, ForceMode.VelocityChange);
+            body.AddTorque(transform.up*0.5f, ForceMode.VelocityChange);
         }
     }
 }

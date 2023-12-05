@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class TaskManager : MonoBehaviour
         for (int i = 0; i < taskSize; i++) taskStatus[i] = false;
 
         currentCoffees = 0;
-        childDodged = 0;
+        childDodged = 3;
         stoveOnFire = false;
         sleptOnLaptop = false; 
     }
@@ -68,16 +69,14 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    public int getChildDodged()
+    public int ChildDodged
     {
-        return childDodged; 
-    }
-
-    public void incrementChildDodged()
-    {
-        if (childDodged >= maxChildDodged) return;
-        childDodged++;
-        if (childDodged == maxChildDodged) taskStatus[childDodgedTaskIndex] = true; 
+        get => childDodged;
+        set { 
+            childDodged = Math.Min(childDodged, Math.Clamp(value, 0, 3)); 
+            if (childDodged == 0)
+                taskStatus[childDodgedTaskIndex] = true;
+        }
     }
 
     public bool getStoveOnFire()
@@ -89,14 +88,11 @@ public class TaskManager : MonoBehaviour
         stoveOnFire = true;
         taskStatus[stoveOnFireTaskIndex] = true; 
     }
-    public bool getSleptOnLaptop()
-    {
-        return sleptOnLaptop;
+    public bool SleptOnLaptop {
+        get => sleptOnLaptop; 
+        set {
+            sleptOnLaptop = sleptOnLaptop & value;
+            taskStatus[sleptOnLaptopTaskIndex] = true;
+        }
     }
-    public void setSleptOnLaptop()
-    {
-        sleptOnLaptop = true;
-        taskStatus[sleptOnLaptopTaskIndex] = true;
-    }
-
 }

@@ -38,9 +38,9 @@ public class Coffee : MonoBehaviour
         }
     }
 
-    // // update color of item
+    // update color of item
     private void UpdateColor()
     {
-        renderer.material.SetColor("_Color", Color.Lerp(Color.red, Color.green, amount));
+        // renderer.material.SetColor("_Color", Color.Lerp(Color.red, Color.green, amount));
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - PickupObject
   - JumpEntry
   - Food
+  - Laptop
   layers:
   - Default
   - TransparentFX

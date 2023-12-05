@@ -14,12 +14,18 @@ namespace CatCafeAI
         public int Patience 
         {
             get => patience;
-            set => patience = value;
+            set {
+                patience = value;
+                if (TaskManager.Instance is not null)
+                    TaskManager.Instance.ChildDodged = value;
+            }
         }
         public int MaxPatience 
         {
             get => maxPatience;
-            set => maxPatience = value;
+            set {
+                maxPatience = value;
+            }
         }
 
         protected override void Awake()

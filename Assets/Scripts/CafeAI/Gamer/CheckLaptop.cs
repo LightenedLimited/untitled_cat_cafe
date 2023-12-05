@@ -41,11 +41,15 @@ namespace CatCafeAI
             {
                 if (gamerMan.Laptop.Occupied && gamerMan.Laptop.Occupant.CompareTag("Player"))
                 {
+                    Debug.Log("Player is on Laptop!");
                     PlayerController controller;
                     if (gamerMan.Laptop.Occupant.TryGetComponent(out controller))
                     {
-                        controller.Yeet();
-                        gamerMan.Laptop.Leave();
+                        Vector3 YeetVel = UnityEngine.Random.onUnitSphere;
+                        YeetVel.y = 1;
+                        YeetVel *= 7;
+                        controller.Yeet(YeetVel);
+                        gamerMan.Laptop.Eject();
                         Debug.Log("Scare the cat (TODO)");
                     }
                 }
