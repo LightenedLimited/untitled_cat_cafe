@@ -28,8 +28,6 @@ public class MenuManager : MonoBehaviour
 
     public static MenuManager Instance;
 
-    private SettingsManager settingsManager;
-
     // Update is called once per frame
     private void Awake()
     {
@@ -47,8 +45,6 @@ public class MenuManager : MonoBehaviour
         optionsScreen.enabled = false;
         controlScreen.enabled = false; 
         winScreen.enabled = false;
-
-        settingsManager = GameObject.Find("SettingsManager").GetComponent<SettingsManager>(); 
     }
 
     private void Update()
@@ -115,6 +111,6 @@ public class MenuManager : MonoBehaviour
 
     public void MainVolumeControl(System.Single vol)
     {
-        settingsManager.SetVolume(vol); 
+        SettingsManager.Instance.SetVolume(vol); 
     }
 }
