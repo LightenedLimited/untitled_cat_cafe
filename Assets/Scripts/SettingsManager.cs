@@ -6,7 +6,7 @@ public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance;
 
-    private float volume; 
+    public float volume; 
 
     public void Awake()
     {
