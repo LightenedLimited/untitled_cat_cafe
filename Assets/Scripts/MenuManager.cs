@@ -9,6 +9,8 @@ public class MenuManager : MonoBehaviour
 
     public Canvas pauseScreen;
     public Canvas taskScreen;
+    public Canvas optionsScreen;
+    public Canvas controlScreen; 
 
     [SerializeField]
     GameObject taskContainer;
@@ -20,8 +22,9 @@ public class MenuManager : MonoBehaviour
 
     private string[] taskCompleteStrings;
 
-    public static MenuManager Instance; 
+    public static MenuManager Instance;
 
+    private SettingsManager settingsManager;
 
     // Update is called once per frame
     private void Start()
@@ -31,11 +34,16 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
             return; 
         }
+
         Instance = this; 
-        DontDestroyOnLoad(gameObject); 
+        DontDestroyOnLoad(gameObject);
 
         pauseScreen.enabled = false;
         taskScreen.enabled = false;
+        optionsScreen.enabled = false;
+        controlScreen.enabled = false; 
+
+
         taskCompleteStrings = new string[4]; //TODO: remove hard code
         taskCompleteStrings[0] = "<s>Knock Over 5 Coffees!</s>";
         taskCompleteStrings[1] = "<s>Dodge Child 3 Times!</s>";
@@ -60,24 +68,52 @@ public class MenuManager : MonoBehaviour
     public void turnOnPaused()
     {
         pauseScreen.enabled = true;
+        GameManager.Instance.UpdateGameState(GameState.GamePaused); 
         musicSource.Pause();
     }
 
     public void turnOffPaused()
     {
         pauseScreen.enabled = false;
+        optionsScreen.enabled = false;
+        controlScreen.enabled = false;
+        GameManager.Instance.UpdateGameState(GameState.GameRunning);
         musicSource.UnPause();
     }
 
 
     public void turnOnTaskManager()
     {
-        taskScreen.enabled = true; 
+        taskScreen.enabled = true;
+        GameManager.Instance.UpdateGameState(GameState.GamePaused);
     }
     public void turnOffTaskManger()
     {
-        taskScreen.enabled = false; 
+        pauseScreen.enabled = false;
+        taskScreen.enabled = false;
+        optionsScreen.enabled = false;
+        controlScreen.enabled = false;
+        GameManager.Instance.UpdateGameState(GameState.GameRunning);
     }
 
-    
+    public void turnOnOptions()
+    {
+        pauseScreen.enabled = false;
+        taskScreen.enabled = false;
+        optionsScreen.enabled = true;
+        controlScreen.enabled = false; 
+    }
+
+    public void turnOnControls()
+    {
+        pauseScreen.enabled = false;
+        taskScreen.enabled = false;
+        optionsScreen.enabled = false;
+        controlScreen.enabled = true;
+    }
+
+    public void MainVolumeControl(System.Single vol)
+    {
+        SettingsManager.Instance.volume = vol;
+    }
 }

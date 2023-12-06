@@ -8,7 +8,9 @@ public class MainMenuStartScript : MonoBehaviour
     public Canvas main_menu_canvas;
     public Canvas options_canvas;
     public Canvas credits_canvas;
-    public Canvas controls_canvas; 
+    public Canvas controls_canvas;
+
+    public static MainMenuStartScript Instance; 
 
     public void StartGame()
     {
