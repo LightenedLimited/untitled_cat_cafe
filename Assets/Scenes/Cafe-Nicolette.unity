@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4438735, g: 0.49324483, b: 0.57273847, a: 1}
+  m_IndirectSpecularColor: {r: 0.44387335, g: 0.4932444, b: 0.57273763, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -404,6 +404,8 @@ MonoBehaviour:
   taskManagerObject: {fileID: 512863923}
   pauseScreen: {fileID: 1686016557}
   taskScreen: {fileID: 714633725}
+  optionsScreen: {fileID: 0}
+  controlScreen: {fileID: 0}
   taskContainer: {fileID: 1176051430}
   musicSource: {fileID: 1672060403}
 --- !u!1 &127637876
@@ -1298,7 +1300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd8035a1b9394d9c93065c20adc4142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSize: 2
+  taskContainer: {fileID: 1176051430}
+  taskSize: 4
 --- !u!1 &617657250
 GameObject:
   m_ObjectHideFlags: 0

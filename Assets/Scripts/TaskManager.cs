@@ -2,13 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEditor;
+using System.Linq;
 
 public class TaskManager : MonoBehaviour
 {
-
     public static TaskManager Instance; 
 
+    [SerializeField]
+    GameObject taskContainer;
+
+    [SerializeField]
+    MenuManager menuManager;
+
     public int taskSize; 
+
 
     // Start is called before the first frame update
     private bool[] taskStatus;
@@ -26,15 +35,17 @@ public class TaskManager : MonoBehaviour
 
     private bool sleptOnLaptop;
     public const int sleptOnLaptopTaskIndex = 3; 
-
-    void Start()
-    {
-        
-    }
+    private string[] taskCompleteStrings;
 
     // Update is called once per frame
     private void Awake()
     {
+        taskCompleteStrings = new string[4]; //TODO: remove hard code
+        taskCompleteStrings[0] = "<s>Knock Over 5 Coffees!</s>";
+        taskCompleteStrings[1] = "<s>Dodge Child 3 Times!</s>";
+        taskCompleteStrings[2] = "<s>Set Stove on Fire</s>";
+        taskCompleteStrings[3] = "<s>Sleep on Laptop</s>";
+
         if(Instance != null)
         {
             Destroy(gameObject);
@@ -50,6 +61,20 @@ public class TaskManager : MonoBehaviour
         childDodged = 3;
         stoveOnFire = false;
         sleptOnLaptop = false; 
+    }
+
+    public void Update()
+    {
+        int i = 0;
+        for(i = 0; i < taskSize; i++)
+        {
+            if (!taskStatus[i]) continue;
+
+            Transform textObject = taskContainer.transform.GetChild(i);
+            textObject.GetComponent<TMP_Text>().text = taskCompleteStrings[i]; 
+        }
+        if (taskStatus.Aggregate(true, (win, task) => win & task))
+            menuManager.turnOnWinScreen();
     }
 
     public bool[] GetTaskStatus()

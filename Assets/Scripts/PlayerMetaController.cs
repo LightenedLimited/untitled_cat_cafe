@@ -56,7 +56,7 @@ public class PlayerMetaController : MonoBehaviour
 
         if(showingTaskManager)
         {
-            menu.turnOffTaskManger();
+            menu.turnOffTaskManager();
             showingTaskManager = false; 
         }
         else
