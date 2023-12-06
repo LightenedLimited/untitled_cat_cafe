@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
     private void AttachPickupObject()
     {
         pickupObject.GetComponent<Rigidbody>().isKinematic = true;
-        pickupObject.GetComponent<BoxCollider>().enabled = false;
+        pickupObject.GetComponent<Collider>().enabled = false;
         pickupObject.transform.position = MouthLocation.transform.position; // sets the position of the object to your hand position
         pickupObject.transform.parent = MouthLocation.transform; //makes the object become a child of the parent so that it moves with the hands
     }
