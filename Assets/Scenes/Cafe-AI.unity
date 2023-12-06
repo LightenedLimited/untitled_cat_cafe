@@ -1856,7 +1856,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sleep on Laptop
+  m_text: Find a toasty (and safe) place to sleep
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f38b6a5c4eceb4c3d9ebe5fec3aab560, type: 2}
   m_sharedMaterial: {fileID: 5691370950315327174, guid: f38b6a5c4eceb4c3d9ebe5fec3aab560, type: 2}
@@ -8380,7 +8380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8279e609009c3b6428fb5195d9c5b5f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12069
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8279e609009c3b6428fb5195d9c5b5f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11909,7 +11909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Set Stove on Fire
+  m_text: FIRE!!!!!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f38b6a5c4eceb4c3d9ebe5fec3aab560, type: 2}
   m_sharedMaterial: {fileID: 5691370950315327174, guid: f38b6a5c4eceb4c3d9ebe5fec3aab560, type: 2}

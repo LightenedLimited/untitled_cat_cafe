@@ -43,7 +43,7 @@ public class TaskManager : MonoBehaviour
         taskCompleteStrings = new string[4]; //TODO: remove hard code
         taskCompleteStrings[0] = "<s>Knock Over 5 Coffees!</s>";
         taskCompleteStrings[1] = "<s>Dodge Child 3 Times!</s>";
-        taskCompleteStrings[2] = "<s>Set Stove on Fire</s>";
+        taskCompleteStrings[2] = "<s>FIRE!!!!!</s>";
         taskCompleteStrings[3] = "<s>Sleep on Laptop</s>";
 
         if(Instance != null)
