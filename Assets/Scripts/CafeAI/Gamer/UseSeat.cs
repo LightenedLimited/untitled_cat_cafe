@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +24,9 @@ namespace CatCafeAI
         private float timer;
         private NavMeshAgent agent;
         private Animator anim; 
+        private bool sat = false;
+        private Rigidbody rb; 
+        private CapsuleCollider collider; 
         protected override void Awake()
         {
             base.Awake();
@@ -28,6 +34,10 @@ namespace CatCafeAI
                 Debug.LogError("No Gamer Manager");
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
+            if (!TryGetComponent<Rigidbody>(out rb))
+                Debug.LogError("No RB");
+            if (!TryGetComponent<CapsuleCollider>(out collider))
+                Debug.LogError("No collider");
             anim = GetComponent<Animator>(); 
         }
 
@@ -36,12 +46,43 @@ namespace CatCafeAI
         {
             agent.enabled = false;
             startPosition = transform.position;
-            endPosition = gamerMan.Seat.transform.position +
-                gamerMan.Seat.SeatOffset;
+            endPosition = gamerMan.Seat.SeatPosition;
             startDirection = transform.rotation;
             endDirection = gamerMan.Seat.transform.rotation;
+            rb.isKinematic = true;
             timer = 0;
+            sat = false;
+            collider.height = 0;
+            agent.height = 0.5f;
+        }
 
+        void OnDisable()
+        {
+            // agent.enabled = true;
+            // collider.height = 2;
+            // agent.height = 2f;
+        }
+        void Update()
+        {
+            timer += Time.deltaTime; 
+            float mixTimer = Math.Clamp(timer, 0, 1);
+            float mix = mixTimer * mixTimer * (3 - 2*mixTimer);
+            transform.rotation = Quaternion.Lerp(startDirection, endDirection, mix);
+            transform.position = Vector3.Lerp(startPosition, endPosition, mix);
+            if (timer >= 3)
+            {
+                manager.Transition(this, FinishedTransition);
+                rb.isKinematic = false;
+            }
+            else if (timer >= 1 && !sat)
+            {
+                sat = true;
+                SitDown();
+            }
+        }
+
+        void SitDown()
+        {
             if (gamerMan.Seat is null)
             {
                 Debug.Log("No seat to sit on");
@@ -60,17 +101,6 @@ namespace CatCafeAI
             {
                 anim.SetTrigger("sitting"); 
                 Debug.Log("Sat down");
-            }
-        }
-        void Update()
-        {
-            timer += Time.deltaTime / Duration; 
-            float mix = timer * timer * (3 - 2*timer);
-            transform.rotation = Quaternion.Lerp(startDirection, endDirection, mix);
-            transform.position = Vector3.Lerp(startPosition, endPosition, mix);
-            if (timer >= 1)
-            {
-                manager.Transition(this, FinishedTransition);
             }
         }
     }

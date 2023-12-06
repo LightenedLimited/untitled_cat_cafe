@@ -9,7 +9,7 @@ public class Seatable : MonoBehaviour
     [SerializeField] public SeatType Type;
     private GameObject occupant;
 
-    public Vector3 SeatPosition => gameObject.transform.position + SeatOffset;
+    public Vector3 SeatPosition => transform.position + SeatOffset;
     public Quaternion SeatRotation => gameObject.transform.rotation;
     public bool Occupied => occupant is not null;
     public GameObject Occupant => occupant;
