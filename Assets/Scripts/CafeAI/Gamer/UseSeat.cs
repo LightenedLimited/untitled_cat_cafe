@@ -20,6 +20,7 @@ namespace CatCafeAI
         private GamerStateMan gamerMan;
         private float timer;
         private NavMeshAgent agent;
+        private Animator anim; 
         protected override void Awake()
         {
             base.Awake();
@@ -27,6 +28,7 @@ namespace CatCafeAI
                 Debug.LogError("No Gamer Manager");
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
+            anim = GetComponent<Animator>(); 
         }
 
         // Update is called once per frame
@@ -56,6 +58,7 @@ namespace CatCafeAI
             }
             else 
             {
+                anim.SetTrigger("sitting"); 
                 Debug.Log("Sat down");
             }
         }

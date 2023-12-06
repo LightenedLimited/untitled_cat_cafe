@@ -17,6 +17,7 @@ namespace CatCafeAI
         private float actionTime = 0;
         private GamerStateMan gamerMan;
         private NavMeshAgent agent;
+        private Animator anim; 
         // Start is called before the first frame update
         protected override void Awake()
         {
@@ -26,11 +27,19 @@ namespace CatCafeAI
                 Debug.LogError("State Manager is not a gamer");
             if (!TryGetComponent<NavMeshAgent>(out agent))
                 Debug.LogError("No Navmesh Agent");
+
+            anim = GetComponent<Animator>(); 
+        }
+
+        void OnDisable()
+        {
+            anim.SetBool("working", false);
         }
 
         void OnEnable()
         {
             Debug.Log("Using Laptop");
+            anim.SetBool("working", true); 
             actionTime = 0;
             if (gamerMan.Laptop is null)
                 gamerMan.GetLaptop();
