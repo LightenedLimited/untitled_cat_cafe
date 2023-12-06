@@ -31,7 +31,7 @@ public class Coffee : MonoBehaviour
     void Update()
     {
         // if tips, update to unusable
-        if (Vector3.Angle(gameObject.transform.up, Vector3.up) > tipAngle)
+        if (Vector3.Angle(gameObject.transform.up, Vector3.up) > tipAngle && Amount != 0)
         {
             Amount = 0;
             TaskManager.Instance.incrementCoffee(); 

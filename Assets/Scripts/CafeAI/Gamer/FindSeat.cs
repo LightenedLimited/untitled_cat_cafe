@@ -60,7 +60,7 @@ namespace CatCafeAI
             if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             {
                 gamerMan.Sit(targetSeat);
-                Debug.Log("Reached Coffee");
+                Debug.Log("Reached Seat");
                 manager.Transition(this, AtSeatTransition);
             }
         }
