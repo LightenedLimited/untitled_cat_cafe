@@ -32,6 +32,11 @@ public class SettingsManager : MonoBehaviour
 
     public void SetVolume(float _value)
     {
+        if (_value == 0) {
+            masterMixer.SetFloat("MasterVolume", -100000);
+            return; 
+         }
+
         masterMixer.SetFloat("MasterVolume", Mathf.Log(_value) * 20f); 
     }
 
