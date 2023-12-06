@@ -85,7 +85,7 @@ public class MenuManager : MonoBehaviour
     public void turnOnTaskManager()
     {
         taskScreen.enabled = true;
-        GameManager.Instance.UpdateGameState(GameState.GamePaused);
+        //GameManager.Instance.UpdateGameState(GameState.GamePaused);
     }
     public void turnOffTaskManger()
     {
@@ -93,7 +93,7 @@ public class MenuManager : MonoBehaviour
         taskScreen.enabled = false;
         optionsScreen.enabled = false;
         controlScreen.enabled = false;
-        GameManager.Instance.UpdateGameState(GameState.GameRunning);
+        //GameManager.Instance.UpdateGameState(GameState.GameRunning);
     }
 
     public void turnOnOptions()
