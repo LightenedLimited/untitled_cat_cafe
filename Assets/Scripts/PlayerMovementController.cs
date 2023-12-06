@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
         Vector2 forwardVector = new Vector2(this.transform.forward.x, this.transform.forward.z); 
         float angle = Vector2.Angle(forwardVector, (jumpObjectPos - thisObjectPos).normalized);
         Debug.Log(angle); 
+        Debug.Log((jumpObjectPos - thisObjectPos).normalized);
         if (angle > jumpThreshold) return;
         //disable movement during jump? 
         anim.SetTrigger("jump");
