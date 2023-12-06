@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 1870688594097573068}
   - component: {fileID: 7463297046939736224}
   - component: {fileID: 1289628261130742030}
+  - component: {fileID: 1325933042949991097}
   - component: {fileID: 7875280332698934573}
   - component: {fileID: 7893240207214567491}
   - component: {fileID: 2896624949025408483}
-  - component: {fileID: 1325933042949991097}
   - component: {fileID: 766270372651087710}
-  - component: {fileID: 7792593084485763204}
   m_Layer: 0
   m_Name: Food
   m_TagString: PickupObject
@@ -89,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1325933042949991097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126750100693853281}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.0000019073486}
 --- !u!65 &7875280332698934573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -150,27 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnStove: 0
---- !u!65 &1325933042949991097
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126750100693853281}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000002, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.0000019073486}
 --- !u!114 &766270372651087710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,24 +185,3 @@ MonoBehaviour:
   prehighlight: {fileID: 0}
   highlight: {fileID: 0}
   meshRenderer: {fileID: 1289628261130742030}
---- !u!65 &7792593084485763204
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126750100693853281}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.00000011920929, y: 0, z: 0}
