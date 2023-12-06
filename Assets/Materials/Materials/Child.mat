@@ -62,7 +62,7 @@ Material:
     m_Ints:
     - _NCels: 1
     m_Floats:
-    - _Ambient: 0.408
+    - _Ambient: 0.44
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -70,7 +70,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxIntensity: 0.659
+    - _MaxIntensity: 0.616
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
