@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor;
 using System.Linq;
 
 public class TaskManager : MonoBehaviour

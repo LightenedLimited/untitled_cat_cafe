@@ -31,7 +31,7 @@ public class MenuManager : MonoBehaviour
     private SettingsManager settingsManager;
 
     // Update is called once per frame
-    private void Start()
+    private void Awake()
     {
         if(Instance != null)
         {
