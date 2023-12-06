@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio; 
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     AudioSource musicSource;
+
 
     private TaskManager taskManager; 
 
@@ -44,7 +46,9 @@ public class MenuManager : MonoBehaviour
         taskScreen.enabled = false;
         optionsScreen.enabled = false;
         controlScreen.enabled = false; 
-        winScreen.enabled = false; 
+        winScreen.enabled = false;
+
+        settingsManager = GameObject.Find("SettingsManager").GetComponent<SettingsManager>(); 
     }
 
     private void Update()
@@ -111,6 +115,6 @@ public class MenuManager : MonoBehaviour
 
     public void MainVolumeControl(System.Single vol)
     {
-        SettingsManager.Instance.volume = vol;
+        settingsManager.SetVolume(vol); 
     }
 }

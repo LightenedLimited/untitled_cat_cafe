@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4438735, g: 0.49324483, b: 0.57273847, a: 1}
+  m_IndirectSpecularColor: {r: 0.44387332, g: 0.4932441, b: 0.5727373, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5235,6 +5235,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7e80f1ef363d3e148a2a4eff2acba29a, type: 2}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.81
@@ -5295,6 +5307,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -8689764737529752552, guid: b2cf80444be2789429087098d39bb0c8, type: 3}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7792593084485763204, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
     m_RemovedGameObjects: []
@@ -6290,7 +6314,7 @@ AudioSource:
   m_GameObject: {fileID: 1398211988}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f85fa0f58ee40417ba389a2cc6784036, type: 2}
   m_audioClip: {fileID: 8300000, guid: c340bb16ec79fea419066e78a0a8b433, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -7224,6 +7248,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 7e80f1ef363d3e148a2a4eff2acba29a, type: 2}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalScale.x
       value: 7.72
@@ -7284,6 +7320,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 8563063998851998027, guid: 0cd93a71d8aa0124781cce788e3592eb, type: 3}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7792593084485763204, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
     m_RemovedGameObjects: []
@@ -8717,6 +8765,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 7e80f1ef363d3e148a2a4eff2acba29a, type: 2}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.66
@@ -8731,7 +8791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.78
+      value: -4.378
       objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11818,6 +11878,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7e80f1ef363d3e148a2a4eff2acba29a, type: 2}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325933042949991097, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.57
@@ -11832,7 +11904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5999994
+      value: -6.15
       objectReference: {fileID: 0}
     - target: {fileID: 1870688594097573068, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11878,6 +11950,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2902985741627639910, guid: b2cf80444be2789429087098d39bb0c8, type: 3}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875280332698934573, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
+      propertyPath: m_Size.z
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7792593084485763204, guid: fea8627ef0c0eec4ea80b23d04ddde08, type: 3}
     m_RemovedGameObjects: []
